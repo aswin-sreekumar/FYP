@@ -80,7 +80,7 @@ module alu(
            ALU_Result = (A>B)?8'd1:8'd0 ;
         4'b1111: // Equal comparison   
             ALU_Result = (A==B)? 8'd1:8'd0 ;
-          default: ALU_Result = A + B ; 
+          x
         endcase
     end
     assign ALU_Out = ALU_Result; // ALU out
