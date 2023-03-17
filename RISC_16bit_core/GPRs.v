@@ -22,6 +22,16 @@ module GPRs(
  initial begin
   for(i=0;i<8;i=i+1)
    reg_array[i] <= 16'd0;
+   $monitor("\ntime = %d\n", $time, 
+  "\treg_array[0] = %b\n", reg_array[0],   
+  "\treg_array[1] = %b\n", reg_array[1],
+  "\treg_array[2] = %b\n", reg_array[2],
+  "\treg_array[3] = %b\n", reg_array[3],
+  "\treg_array[4] = %b\n", reg_array[4],
+  "\treg_array[5] = %b\n", reg_array[5],
+  "\treg_array[6] = %b\n", reg_array[6],
+  "\treg_array[7] = %b\n", reg_array[7]);
+  `simulation_time;
  end
  always @ (posedge clk ) begin
    if(reg_write_en) begin

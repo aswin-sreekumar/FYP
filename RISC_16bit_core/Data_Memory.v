@@ -21,10 +21,9 @@ integer f;
 wire [2:0] ram_addr=mem_access_addr[2:0];
 initial
  begin
-  $readmemb("../memory/test.data", memory);
-  
-  f = $fopen(`filename);
-  $monitor(f, "time = %d\n", $time, 
+  $readmemb("test.data", memory);
+  // f = $fopen(`filename);
+  $monitor("\ntime = %d\n", $time, 
   "\tmemory[0] = %b\n", memory[0],   
   "\tmemory[1] = %b\n", memory[1],
   "\tmemory[2] = %b\n", memory[2],
@@ -33,8 +32,8 @@ initial
   "\tmemory[5] = %b\n", memory[5],
   "\tmemory[6] = %b\n", memory[6],
   "\tmemory[7] = %b\n", memory[7]);
-  `simulation_time;
-  $fclose(f);
+  #10;
+  // $fclose(f);
  end
  
  always @(posedge clk) begin

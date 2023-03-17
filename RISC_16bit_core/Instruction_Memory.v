@@ -8,11 +8,11 @@ module Instruction_Memory(
  output[15:0] instruction
 );
 
- reg [`col - 1:0] memory [`row_i - 1:0];
+ reg [0:`col - 1] memory [0:`row_i - 1];
  wire [3 : 0] rom_addr = pc[4 : 1];
  initial
  begin
-  $readmemb("../memory/test.prog", memory,0,14);
+  $readmemb("test.prog", memory,0,14);
  end
  assign instruction =  memory[rom_addr]; 
 
