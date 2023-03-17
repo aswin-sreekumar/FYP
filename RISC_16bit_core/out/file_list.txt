@@ -1,0 +1,1 @@
+../src/alu_control.v ../src/ALU.v ../src/Control_Unit.v ../src/Data_Memory.v ../src/Datapath_Unit.v ../src/GPRs.v ../src/Instruction_Memory.v ../tb/main_tb.v
