@@ -2,7 +2,7 @@
 // Verilog testbench code to test the processor
 
 `timescale 1ns / 1ps
-`include "Parameter.v"
+`include "./src/Parameter.v"
 
 module main_tb;
 
@@ -16,7 +16,7 @@ module main_tb;
 
 initial begin
     $dumpfile("main_tb.vcd");
-    $dumpvars(1,main_tb);
+    $dumpvars(0,main_tb);
    clk <=0;
    `simulation_time;
    $finish;

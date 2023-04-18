@@ -1,7 +1,7 @@
 // Verilog code for RISC Processor 
 // Verilog code for Instruction Memory
 
-`include "Parameter.v"
+`include "src/Parameter.v"
 
 module Instruction_Memory(
  input[15:0] pc,
@@ -12,7 +12,7 @@ module Instruction_Memory(
  wire [3 : 0] rom_addr = pc[4 : 1];
  initial
  begin
-  $readmemb("test.prog", memory,0,14);
+  $readmemb("memory/test.prog", memory);
  end
  assign instruction =  memory[rom_addr]; 
 

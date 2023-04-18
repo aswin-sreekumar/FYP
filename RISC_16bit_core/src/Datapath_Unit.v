@@ -1,11 +1,11 @@
 // Verilog code for RISC Processor 
 // Verilog code for Data Path of the processor
 `timescale 1ns / 1ps
-`include "Instruction_Memory.v"
-`include "GPRs.v"
-`include "alu_control.v"
-`include "ALU.v"
-`include "Data_Memory.v"
+`include "src/Instruction_Memory.v"
+`include "src/GPRs.v"
+`include "src/alu_control.v"
+`include "src/ALU.v"
+`include "src/Data_Memory.v"
 
 module Datapath_Unit(
  input clk,

@@ -1,4 +1,4 @@
-`include "Parameter.v"
+`include "src/Parameter.v"
 // fpga4student.com 
 // FPGA projects, VHDL projects, Verilog projects 
 // Verilog code for RISC Processor 
@@ -21,7 +21,7 @@ integer f;
 wire [2:0] ram_addr=mem_access_addr[2:0];
 initial
  begin
-  $readmemb("test.data", memory);
+  $readmemb("memory/test.data", memory);
   // f = $fopen(`filename);
   $monitor("\ntime = %d\n", $time, 
   "\tmemory[0] = %b\n", memory[0],   

@@ -1,8 +1,8 @@
 `timescale 1ns / 1ps
 // FPGA projects, VHDL projects, Verilog projects 
 // Verilog code for RISC Processor 
-`include "Datapath_Unit.v"
-`include "Control_Unit.v"
+`include "src/Datapath_Unit.v"
+`include "src/Control_Unit.v"
 module Risc_16_bit(
  input clk
 );
