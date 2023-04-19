@@ -1,10 +1,7 @@
-// Verilog code for RISC Processor 
-// Verilog testbench code to test the processor
-
 `timescale 1ns / 1ps
-`include "./src/Parameter.v"
+`include "src/Parameter.v"
 
-module main_tb;
+module test_Risc_16_bit;
 
  // Inputs
  reg clk;
@@ -14,12 +11,18 @@ module main_tb;
   .clk(clk)
  );
 
-initial begin
-    $dumpfile("main_tb.vcd");
-    $dumpvars(0,main_tb);
+ initial 
+  begin
+    $dumpfile("dump.vcd"); 
+    $dumpvars;
    clk <=0;
    `simulation_time;
    $finish;
+  end
+
+ always 
+  begin
+   #5 clk = ~clk;
   end
 
 endmodule
