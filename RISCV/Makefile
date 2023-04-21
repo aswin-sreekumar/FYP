@@ -1,7 +1,11 @@
 # Makefile for RISCV processor
 
 CC = iverilog
-library_input: Top_module.v Top_module_tb.v
-	$(CC) -o Top_module.vvp Top_module.v Top_module_tb.v
-	vvp Top_module.vvp
-#gtkwave dumpfile.vcd config.gtkw
+SRC = src/Top_module.v
+TB = tb/Top_module_tb.v
+VVP = output/Top_module.vvp
+
+library_input: $(SRC) $(TB)
+	$(CC) -o $(VVP) $(SRC) $(TB)
+	vvp $(VVP)
+	gtkwave output/dumpfile.vcd output/config.gtkw

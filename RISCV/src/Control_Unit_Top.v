@@ -1,7 +1,7 @@
 // Control unit to wire main decoder and ALU decoder
 
-`include "ALU_Decoder.v"
-`include "Main_Decoder.v"
+`include "src/ALU_Decoder.v"
+`include "src/Main_Decoder.v"
 
 module Control_Unit_Top(Op,RegWrite,ImmSrc,ALUSrc,MemWrite,ResultSrc,Branch,funct3,funct7,ALUControl);
 

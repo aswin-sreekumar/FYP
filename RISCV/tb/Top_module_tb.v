@@ -10,7 +10,7 @@ module Top_module_tb ();
     );
 
     initial begin
-        $dumpfile("dumpfile.vcd");
+        $dumpfile("output/dumpfile.vcd");
         $dumpvars(0);
     end
 

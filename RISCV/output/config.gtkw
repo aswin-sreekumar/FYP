@@ -1,0 +1,34 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Fri Apr 21 14:14:47 2023
+[*]
+[dumpfile] "C:\Users\aswin\Desktop\C files\FYP - SEM 8\FYP\RISCV\output\output\dumpfile.vcd"
+[savefile] "C:\Users\aswin\Desktop\C files\FYP - SEM 8\FYP\RISCV\output\config.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-7.643856 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] Top_module_tb.
+[treeopen] Top_module_tb.Top_module.
+[treeopen] Top_module_tb.Top_module.Control_Unit_Top.
+[sst_width] 197
+[signals_width] 150
+[sst_expanded] 1
+[sst_vpaned_height] 153
+@28
+Top_module_tb.Top_module.Register_File.rst
+Top_module_tb.Top_module.Register_File.clk
+@22
+Top_module_tb.Top_module.PC.PC[31:0]
+Top_module_tb.Top_module.Instruction_Memory.A[31:0]
+Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
+@28
+Top_module_tb.Top_module.Control_Unit_Top.ALU_Decoder.ALUOp[1:0]
+Top_module_tb.Top_module.Control_Unit_Top.ALU_Decoder.ALUControl[2:0]
+Top_module_tb.Top_module.Control_Unit_Top.ALU_Decoder.funct3[2:0]
+@22
+Top_module_tb.Top_module.Control_Unit_Top.ALU_Decoder.funct7[6:0]
+@23
+Top_module_tb.Top_module.Control_Unit_Top.ALU_Decoder.op[6:0]
+[pattern_trace] 1
+[pattern_trace] 0

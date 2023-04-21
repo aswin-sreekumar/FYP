@@ -1,14 +1,14 @@
 // Top level module for RISC-V core
 
-`include "PC.v"
-`include "Instruction_Memory.v"
-`include "Register_File.v"
-`include "Sign_Extend.v"
-`include "ALU.v"
-`include "Control_Unit_Top.v"
-`include "Data_Memory.v"
-`include "PC_Adder.v"
-`include "Mux.v"
+`include "src/PC.v"
+`include "src/Instruction_Memory.v"
+`include "src/Register_File.v"
+`include "src/Sign_Extend.v"
+`include "src/ALU.v"
+`include "src/Control_Unit_Top.v"
+`include "src/Data_Memory.v"
+`include "src/PC_Adder.v"
+`include "src/Mux.v"
 
 module Top_module(clk,rst);
 
