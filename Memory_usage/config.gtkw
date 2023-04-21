@@ -1,0 +1,33 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Thu Apr 20 12:35:31 2023
+[*]
+[dumpfile] "C:\Users\aswin\Desktop\C files\FYP - SEM 8\RISC-V\Memory_usage\dumpfile.vcd"
+[dumpfile_mtime] "Thu Apr 20 12:35:16 2023"
+[dumpfile_size] 2551
+[savefile] "C:\Users\aswin\Desktop\C files\FYP - SEM 8\RISC-V\Memory_usage\config.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-17.101227 25800 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] memory_tb.
+[sst_width] 197
+[signals_width] 182
+[sst_expanded] 1
+[sst_vpaned_height] 153
+@22
+memory_tb.dut.mem_addr[15:0]
+memory_tb.dut.mem_data[7:0]
+memory_tb.dut.mem_read_data[7:0]
+@28
+memory_tb.dut.mem_write
+@22
+memory_tb.dut.mem_write_data[7:0]
+@420
+memory_tb.dut.i
+memory_tb.dut.WIDTH
+memory_tb.dut.DEPTH
+@29
+memory_tb.dut.clk
+[pattern_trace] 1
+[pattern_trace] 0
