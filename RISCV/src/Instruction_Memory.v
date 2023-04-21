@@ -1,5 +1,5 @@
 // 32-bit Instruction memory block
-
+`include "src/Parameters.v"
 module Instruction_Memory(rst,A,RD);
 
   input rst;
@@ -11,7 +11,7 @@ module Instruction_Memory(rst,A,RD);
   assign RD = (~rst) ? {32{1'b0}} : mem[A[31:2]];
 
   initial begin
-    $readmemh("memory/memfile.hex",mem);
+    $readmemh(`INSTR_FILE,mem);
   end
 
 

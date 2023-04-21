@@ -1,5 +1,7 @@
 // Testbench for RISC-V core top level
 
+`include "src/Parameters.v"
+
 module Top_module_tb ();
     
     reg clk=1'b1,rst;
@@ -10,7 +12,7 @@ module Top_module_tb ();
     );
 
     initial begin
-        $dumpfile("output/dumpfile.vcd");
+        $dumpfile(`DUMPFILE);
         $dumpvars(0);
     end
 
@@ -27,7 +29,7 @@ module Top_module_tb ();
         #150;
 
         rst <=1'b1;
-        #450;
+        #`SIMULATION_TIME;
         $finish;
     end
 endmodule
