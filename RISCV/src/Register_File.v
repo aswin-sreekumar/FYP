@@ -25,7 +25,8 @@ module Register_File(clk,rst,WE3,WD3,A1,A2,A3,RD1,RD2);
         // $monitor("\ntime = %d\n", $time, 
         // "\tRegister[0] = %b\n", Register[0],   
         // "\tRegister[1] = %b\n", Register[1],
-        // "\tRegister[2] = %b\n", Register[2]);
+        // "\tRegister[2] = %b\n", Register[2],
+        // "\tRegister[3] = %b\n", Register[3]);
 
     end
 

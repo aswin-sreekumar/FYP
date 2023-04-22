@@ -5,5 +5,5 @@
 `define INSTR_FILE "memory/instruction.hex"
 `define DATA_FILE "memory/data.hex"
 `define DUMPFILE "output/dumpfile.vcd"
-`define SIMULATION_TIME 450
+`define SIMULATION_TIME 600
 `endif
