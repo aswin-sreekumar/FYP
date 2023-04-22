@@ -4,9 +4,9 @@
 import pytest
 from riscv_assembler.convert import AssemblyConverter as AC
 
-asm_file = 'instr/simple.asm'
-bin_file = 'instr/new.bin'
-txt_file = 'instr/new.txt'
+asm_file = 'memory/simple.asm'
+bin_file = 'memory/new.bin'
+txt_file = 'memory/new.txt'
 
 cnv = AC(output_mode = 'f', nibble_mode = False, hex_mode = False)
 cnv(asm_file,bin_file) 

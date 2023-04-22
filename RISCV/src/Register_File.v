@@ -19,9 +19,15 @@ module Register_File(clk,rst,WE3,WD3,A1,A2,A3,RD1,RD2);
     assign RD2 = (~rst) ? 32'd0 : Register[A2];
 
     initial begin
-        Register[5] = 32'h00000005;
-        Register[6] = 32'h00000004;
+        Register[0] = 32'h00000005;
+        Register[1] = 32'h00000003;
+        Register[2] = 32'h00000100;
         
+        $monitor("\ntime = %d\n", $time, 
+        "\tRegister[0] = %b\n", Register[0],   
+        "\tRegister[1] = %b\n", Register[1],
+        "\tRegister[2] = %b\n", Register[2]);
+
     end
 
 endmodule
