@@ -8,7 +8,7 @@ module Register_File(clk,rst,WE3,WD3,A1,A2,A3,RD1,RD2);
     output [31:0]RD1,RD2;
 
     reg [31:0] Register [31:0];
-
+    integer  i;
     always @ (posedge clk)
     begin
         if(WE3)
@@ -19,14 +19,13 @@ module Register_File(clk,rst,WE3,WD3,A1,A2,A3,RD1,RD2);
     assign RD2 = (~rst) ? 32'd0 : Register[A2];
 
     initial begin
-        Register[0] = 32'h00000005;
-        Register[1] = 32'h00000003;
-        Register[2] = 32'h00000100;
+        for(i=0;i<32;i++)
+            Register[i] <= {32{1'b0}};
         
-        $monitor("\ntime = %d\n", $time, 
-        "\tRegister[0] = %b\n", Register[0],   
-        "\tRegister[1] = %b\n", Register[1],
-        "\tRegister[2] = %b\n", Register[2]);
+        // $monitor("\ntime = %d\n", $time, 
+        // "\tRegister[0] = %b\n", Register[0],   
+        // "\tRegister[1] = %b\n", Register[1],
+        // "\tRegister[2] = %b\n", Register[2]);
 
     end
 

@@ -1,5 +1,5 @@
 $date
-	Sat Apr 22 15:24:26 2023
+	Sat Apr 22 22:29:27 2023
 $end
 $version
 	Icarus Verilog
@@ -117,11 +117,12 @@ $var wire 1 ! clk $end
 $var wire 1 " rst $end
 $var wire 32 ` RD2 [31:0] $end
 $var wire 32 a RD1 [31:0] $end
+$var integer 32 b i [31:0] $end
 $upscope $end
 $scope module Sign_Extend $end
-$var wire 1 b ImmSrc $end
-$var wire 32 c In [31:0] $end
-$var wire 32 d Imm_Ext [31:0] $end
+$var wire 1 c ImmSrc $end
+$var wire 32 d In [31:0] $end
+$var wire 32 e Imm_Ext [31:0] $end
 $upscope $end
 $upscope $end
 $upscope $end
@@ -131,9 +132,10 @@ $dumpall
 $end
 #0
 $dumpvars
+b0 e
 b0 d
-b0 c
-0b
+0c
+b100000 b
 b0 a
 b0 `
 b0 _
@@ -212,49 +214,24 @@ b0 Y
 #100
 0!
 #150
-b1 2
-b1 ;
-b1 C
-b1 H
-b10 %
-b10 S
-b10 _
-05
+b10101010101010101010101010101010 %
+b10101010101010101010101010101010 S
+b10101010101010101010101010101010 _
 1&
-b10 1
-b10 7
-b10 L
-b10 Q
-b10000000001 .
-b10000000001 U
-b10000000001 d
-b10 B
-b10 G
-b10 K
-b100000 ?
-b100000 E
-b110011 =
-b110011 F
-b110011 I
+10
+1$
+b10 >
+b10 D
+b11 =
+b11 F
+b11 I
 b10 ^
-b1 ]
-b10 6
-b11 #
-b11 :
-b11 T
-bx '
-bx N
-bx R
-b1000000000100000000000100110011 (
-b1000000000100000000000100110011 O
-b1000000000100000000000100110011 c
-b101 *
-b101 <
-b101 a
-b11 )
-b11 M
-b11 V
-b11 `
+b10101010101010101010101010101010 '
+b10101010101010101010101010101010 N
+b10101010101010101010101010101010 R
+b10000100000011 (
+b10000100000011 O
+b10000100000011 d
 1"
 1!
 #200
@@ -262,6 +239,9 @@ b11 `
 #250
 x4
 x8
+bx '
+bx N
+bx R
 x5
 bx 1
 bx 7
@@ -270,9 +250,6 @@ bx Q
 bx %
 bx S
 bx _
-x&
-xb
-x0
 bx 2
 bx ;
 bx C
@@ -280,10 +257,13 @@ bx H
 bx #
 bx :
 bx T
+x&
+xc
+x0
 bx 6
 bx .
 bx U
-bx d
+bx e
 bx /
 bx @
 bx J
@@ -312,7 +292,7 @@ bx ]
 bx \
 bx (
 bx O
-bx c
+bx d
 b1000 ,
 b1000 W
 b1000 [
