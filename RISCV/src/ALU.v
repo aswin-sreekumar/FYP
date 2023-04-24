@@ -8,7 +8,7 @@ module ALU(A,B,Result,ALUControl,OverFlow,Carry,Zero,Negative);
     output [31:0]Result;
 
     wire Cout;
-    wire [31:0]Sum;
+    wire [32:0]Sum;
 
     assign Sum = (ALUControl[0] == 1'b0) ? A + B :
                                           (A + ((~B)+1)) ;

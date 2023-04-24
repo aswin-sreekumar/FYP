@@ -10,8 +10,8 @@ PYTHON_PATH = python
 
 $(info Starting simulation . . . )
 library_input: $(SRC) $(TB) $(ASM_FILE)
-# $(PYTHON_PATH) $(ASSEMBLER)
+	$(PYTHON_PATH) $(ASSEMBLER)
 	$(CC) -o $(VVP) $(SRC) $(TB)
 	vvp $(VVP)
-# gtkwave output/dumpfile.vcd output/config.gtkw
+	gtkwave output/dumpfile.vcd output/config.gtkw
 # $(info Simulation ended . . . )

@@ -7,7 +7,7 @@ asm_file = 'memory/simple.asm'
 bin_file = 'memory/new.bin'
 txt_file = 'memory/new.txt'
 
-cnv = AssemblyConverter(output_mode = 'f', nibble_mode = True, hex_mode = False)
+cnv = AssemblyConverter(output_mode = 'f', nibble_mode = False, hex_mode = True)
 # cnv(asm_file,bin_file) 
 cnv(asm_file,txt_file)
 # cnv_string = "sw x1, 0(x0)"
