@@ -26,7 +26,7 @@ module top_level_module(data, inject_error, dec_data);
         .corrected_enc_data(corrected_enc_data)
     );
 
-    decoder decoder2(
+    decoder decoder(
         .rcvd_data(corrected_enc_data), 
         .dec_data(dec_data)
     );
