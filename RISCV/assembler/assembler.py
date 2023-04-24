@@ -3,16 +3,19 @@
 
 from riscv_assembler.convert import *
 
-asm_file = 'memory/simple.asm'
-bin_file = 'memory/new.bin'
-txt_file = 'memory/new.txt'
+asm_file = 'memory/program.asm'
+hex_file = 'memory/instructions.hex'
 
-cnv = AssemblyConverter(output_mode = 'f', nibble_mode = False, hex_mode = True)
-# cnv(asm_file,bin_file) 
-cnv(asm_file,txt_file)
-# cnv = AssemblyConverter(output_mode = 'f', nibble_mode = False, hex_mode = False)
-# cnv(asm_file,'memory/new1.txt')
-# cnv_string = "sw x1, 0(x0)"
-# result = cnv.convert(cnv_string) 
-# result = cnv.convert(asm_file)
-# print(result)
+cnv = AssemblyConverter(output_mode = 'a', nibble_mode = False, hex_mode = True)
+addr_count = 0;
+f_asm = open(asm_file,'r')
+f_hex = open(hex_file,'w')
+for line in f_asm:
+    f_hex.write("@"+str(hex(addr_count))[2:]+"\n")
+    # print(str(hex(addr_count))[2:])
+    result = cnv(line)
+    f_hex.write(result[0]+"\n")
+    addr_count += 4
+
+f_asm.close()
+f_hex.close()

@@ -21,11 +21,11 @@ module Data_Memory(clk,rst,WE,WD,A,RD);
         // mem[1] = 32'b00000000000000000000000000000000;
         // mem[2] = 32'b00000000000000000000000000001000;
         $readmemh(`DATA_FILE,mem);
-        // $monitor("\ntime = %d\n", $time, 
-        // "\tMemory[0] = %h\n", mem[0],   
-        // "\tMemory[1] = %h\n", mem[1],
-        // "\tMemory[2] = %h\n", mem[2],
-        // "\tMemory[3] = %h\n", mem[3]);
+        $monitor("\ntime = %d\n", $time, 
+        "\tMemory[0] = %h\n", mem[0],   
+        "\tMemory[1] = %h\n", mem[1],
+        "\tMemory[2] = %h\n", mem[2],
+        "\tMemory[3] = %h\n", mem[3]);
     end
 
 endmodule

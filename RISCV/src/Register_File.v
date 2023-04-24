@@ -22,11 +22,11 @@ module Register_File(clk,rst,WE3,WD3,A1,A2,A3,RD1,RD2);
         for(i=0;i<32;i++)
             Register[i] <= {32{1'b0}};
         
-        $monitor("\ntime = %d\n", $time, 
-        "\tRegister[0] = %b\n", Register[0],   
-        "\tRegister[1] = %b\n", Register[1],
-        "\tRegister[2] = %b\n", Register[2],
-        "\tRegister[3] = %b\n", Register[3]);
+        // $monitor("\ntime = %d\n", $time, 
+        // "\tRegister[0] = %b\n", Register[0],   
+        // "\tRegister[1] = %b\n", Register[1],
+        // "\tRegister[2] = %b\n", Register[2],
+        // "\tRegister[3] = %b\n", Register[3]);
 
     end
 
