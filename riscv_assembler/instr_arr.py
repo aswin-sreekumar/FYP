@@ -81,7 +81,7 @@ class _S(Instruction):
 		instr = super().check_instr_valid(instr, S_instr)
 		opcode, f3 = 0, 1
 
-		print("%b %b %b %b %b %b", _S.immediate(imm, 1),super().reg(rs2),super().reg(rs1),instr_map[instr][f3],	_S.immediate(imm, 2),instr_map[instr][opcode])
+		# print("%b %b %b %b %b %b", _S.immediate(imm, 1),super().reg(rs2),super().reg(rs1),instr_map[instr][f3],	_S.immediate(imm, 2),instr_map[instr][opcode])
 		return "".join([
 			_S.immediate(imm, 1),
 			super().reg(rs2),
@@ -102,7 +102,7 @@ class _S(Instruction):
 		if n == 1:
 			# print("n=1: %b", (mod_imm[12-10 : 12-4])+mod_imm[0])
 			return  mod_imm[12-10 : 12-4] + mod_imm[0]
-		print("n=2: %b", mod_imm[12-4 : 12 - 0] + mod_imm[1])
+		# print("n=2: %b", mod_imm[12-4 : 12 - 0] + mod_imm[1])
 		return mod_imm[1] + mod_imm[12-4 : 12 - 0]
 
 
@@ -246,7 +246,7 @@ class _S_parse(InstructionParser):
 
 	def organize(self, tokens):
 		instr, rs1, rs2, imm = tokens[0], reg_map[tokens[3]], reg_map[tokens[1]], tokens[2]
-		print("Tokens 2: %b %b %b %b", instr,rs1,rs2,imm)
+		# print("Tokens 2: %b %b %b %b", instr,rs1,rs2,imm)
 		return S(instr, rs1, rs2, imm)
 
 class _SB_parse(InstructionParser):
