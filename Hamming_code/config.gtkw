@@ -1,0 +1,23 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Mon Apr 24 12:29:21 2023
+[*]
+[dumpfile] "D:\Verilog\Hamming_code\testbench.vcd"
+[dumpfile_mtime] "Mon Apr 24 12:28:03 2023"
+[dumpfile_size] 1525
+[savefile] "D:\Verilog\Hamming_code\config.gtkw"
+[timestart] 0
+[size] 1536 793
+[pos] -139 -139
+*-4.589243 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 197
+[signals_width] 206
+[sst_expanded] 1
+[sst_vpaned_height] 221
+@22
+testbench.dec_data[3:0]
+testbench.data[3:0]
+@23
+testbench.error_in_enc_data[6:0]
+[pattern_trace] 1
+[pattern_trace] 0
