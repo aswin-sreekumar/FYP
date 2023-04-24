@@ -1,10 +1,16 @@
-module error_correction (input [6:0] error_in_enc_data, output [6:0] corrected_enc_data);
-    wire [2:0] s;
-    assign s[0] = error_in_enc_data[6]^error_in_enc_data[4]^error_in_enc_data[2]^error_in_enc_data[0];
-    assign s[1] = error_in_enc_data[6]^error_in_enc_data[5]^error_in_enc_data[2]^error_in_enc_data[1];
-    assign s[2] = error_in_enc_data[6]^error_in_enc_data[5]^error_in_enc_data[4]^error_in_enc_data[3];
-    assign corrected_enc_data = error_in_enc_data;
-    wire [2:0] crct;
-    assign crct = s[2]&4 + s[1]&2 + s[0]&1;
-    assign corrected_enc_data[5] = s ? ~corrected_enc_data[5]:corrected_enc_data[5];
+module error_correction (input [37:0] rcvd_error_data, output reg [37:0] corrected_enc_data);
+    reg [5:0] synd;
+    integer i, j;
+    always@(*) begin
+        corrected_enc_data=rcvd_error_data;
+        synd=6'd0;
+        for(i=0; i<6; i=i+1) begin
+            for(j=1; j<=38; j=j+1) begin
+                if(j & 2**(i)) begin
+                    synd[i]=synd[i]^rcvd_error_data[j-1];
+                end
+            end
+        end
+        corrected_enc_data=corrected_enc_data^(1<<(synd-1));
+    end
 endmodule
