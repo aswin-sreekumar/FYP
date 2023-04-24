@@ -6,6 +6,7 @@ module encoder(input [31:0] msg_data, output reg [37:0] encoded_data);
 integer pptr=0, mptr=0, i, j;
 // for encoding
 initial begin
+	
 	for(i=0; i<38; i=i+1) begin
 		if(i==(2**(pptr)-1)  || i==0) begin 
 			encoded_data[i] = 1'b0; // initially allocating 0 for parity
