@@ -9,6 +9,7 @@
 `include "src/Data_Memory.v"
 `include "src/PC_Adder.v"
 `include "src/Mux.v"
+`include "hamming/hamming_module.v"
 
 module Top_module(clk,rst);
 
@@ -18,6 +19,11 @@ module Top_module(clk,rst);
     wire RegWrite,MemWrite,ALUSrc,ResultSrc;
     wire [1:0]ImmSrc;
     wire [2:0]ALUControl_Top;
+
+    wire inject_error;
+    wire [31:0] Data_pre_encod, Instr_pre_encod;
+    
+    assign inject_error = 1'b1;
 
     PC_Module PC(
         .clk(clk),
@@ -35,7 +41,13 @@ module Top_module(clk,rst);
     Instruction_Memory Instruction_Memory(
                             .rst(rst),
                             .A(PC_Top),
-                            .RD(RD_Instr)
+                            .RD(Instr_pre_encod)
+    );
+
+    Hamming_module Hamming_module1(
+                        .data(Instr_pre_encod),
+                        .inject_error(inject_error),
+                        .dec_data(RD_Instr)
     );
 
     Register_File Register_File(
@@ -93,7 +105,13 @@ module Top_module(clk,rst);
                         .WE(MemWrite),
                         .WD(RD2_Top),
                         .A(ALUResult),
-                        .RD(ReadData)
+                        .RD(Data_pre_encod)
+    );
+
+    Hamming_module Hamming_module2(
+                        .data(Data_pre_encod),
+                        .inject_error(inject_error),
+                        .dec_data(ReadData)
     );
 
     Mux Mux_DataMemory_to_Register(
