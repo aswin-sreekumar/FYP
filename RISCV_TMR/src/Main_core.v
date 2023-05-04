@@ -1,9 +1,9 @@
 // Core unit of RISC-V processor
 // Control unit + Register file + ALU
 
-module Main_core(clk,rst,RD_Instr,PC_Top,ReadData,MemWrite,ALUResult,RD2_Top);
+module Main_core(clk,rst_in,RD_Instr,PC_Top,ReadData,MemWrite,ALUResult,RD2_Top);
 
-    input clk,rst;
+    input clk,rst_in;
     input [31:0] RD_Instr;
     output [31:0] PC_Top;
 
@@ -20,7 +20,7 @@ module Main_core(clk,rst,RD_Instr,PC_Top,ReadData,MemWrite,ALUResult,RD2_Top);
 
     PC_Module PC(
         .clk(clk),
-        .rst(rst),
+        .rst_in(rst_in),
         .PC(PC_Top),
         .PC_Next(PCPlus4)
     );
@@ -33,7 +33,7 @@ module Main_core(clk,rst,RD_Instr,PC_Top,ReadData,MemWrite,ALUResult,RD2_Top);
 
     Register_File Register_File(
                             .clk(clk),
-                            .rst(rst),
+                            .rst_in(rst_in),
                             .WE3(RegWrite),
                             .WD3(Result),
                             .A1(RD_Instr[19:15]),

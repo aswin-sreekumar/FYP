@@ -2,7 +2,7 @@
 // RISC-V
 
 module Voter(
-    rst,
+    rst_in,
     PC_Top_A,MemWrite_A,ALUResult_A,RD2_Top_A,
     PC_Top_B,MemWrite_B,ALUResult_B,RD2_Top_B,
     PC_Top_C,MemWrite_C,ALUResult_C,RD2_Top_C,
@@ -10,7 +10,7 @@ module Voter(
     Voter_state
     );
 
-    input rst;
+    input rst_in;
 
     input [31:0] PC_Top_A,ALUResult_A,RD2_Top_A;
     input [31:0] PC_Top_B,ALUResult_B,RD2_Top_B;
@@ -36,10 +36,10 @@ module Voter(
 
     assign Voter_state = Comp_table[0]&&Comp_table[1]&&Comp_table[2]&&Comp_table[3];
     
-    assign PC_Top = Voter_state[0]?PC_Top_A:Voter_state[1]?PC_Top_B:PC_Top_C;
-    assign ALUResult = Voter_state[0]?ALUResult_A:Voter_state[1]?ALUResult_B:ALUResult_C;
-    assign MemWrite = Voter_state[0]?MemWrite_A:Voter_state[1]?MemWrite_B:MemWrite_C;
-    assign RD2_Top = Voter_state[0]?RD2_Top_A:Voter_state[1]?RD2_Top_B:RD2_Top_C;
+    assign PC_Top = Voter_state[0]?PC_Top_A:Voter_state[1]?PC_Top_B:Voter_state[2]?PC_Top_C:0;
+    assign ALUResult = Voter_state[0]?ALUResult_A:Voter_state[1]?ALUResult_B:Voter_state[2]?ALUResult_C:0;
+    assign MemWrite = Voter_state[0]?MemWrite_A:Voter_state[1]?MemWrite_B:0;
+    assign RD2_Top = Voter_state[0]?RD2_Top_A:Voter_state[1]?RD2_Top_B:Voter_state[2]?RD2_Top_C:0;
 
     
 endmodule

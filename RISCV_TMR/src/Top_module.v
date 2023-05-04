@@ -1,5 +1,6 @@
 // Top level module for RISC-V core
 
+`include "src/Rst_Controller.v"
 `include "src/PC.v"
 `include "src/Instruction_Memory.v"
 `include "src/Register_File.v"
@@ -12,9 +13,11 @@
 `include "src/Main_core.v"
 `include "src/Voter.v"
 
-module Top_module(clk,rst);
+module Top_module(clk,main_rst);
 
-    input clk,rst;
+    input clk,main_rst;
+
+    wire rst_in;
     
     // Top level wires
     wire [31:0] PC_Top,RD_Instr;
@@ -39,16 +42,21 @@ module Top_module(clk,rst);
     // Voter output
     wire [1:0] Voter_state;
 
+    Rst_Controller Rst_Controller(
+                            .main_rst(main_rst),
+                            .rst_in(rst_in)
+    );
  
     Instruction_Memory Instruction_Memory(
-                            .rst(rst),
+                            .rst_in(rst_in),
                             .A(PC_Top),
                             .RD(RD_Instr)
     );
 
     Main_core Main_core_A(
                         .clk(clk),
-                        .rst(rst),
+                        .rst_in(rst_in),
+                        // .core_hold(core_hold),
                         .RD_Instr(RD_Instr),
                         .PC_Top(PC_Top_A),
                         .MemWrite(MemWrite_A),
@@ -59,7 +67,7 @@ module Top_module(clk,rst);
 
     Main_core Main_core_B(
                         .clk(clk),
-                        .rst(rst),
+                        .rst_in(rst_in),
                         .RD_Instr(RD_Instr),
                         .PC_Top(PC_Top_B),
                         .MemWrite(MemWrite_B),
@@ -70,7 +78,7 @@ module Top_module(clk,rst);
 
     Main_core Main_core_C(
                         .clk(clk),
-                        .rst(rst),
+                        .rst_in(rst_in),
                         .RD_Instr(RD_Instr),
                         .PC_Top(PC_Top_C),
                         .MemWrite(MemWrite_C),
@@ -80,7 +88,7 @@ module Top_module(clk,rst);
     );                  
     
     Voter Voter(
-                .rst(rst),
+                .rst_in(rst_in),
                 .PC_Top_A(PC_Top_A),
                 .MemWrite_A(MemWrite_A),
                 .ALUResult_A(ALUResult_A),
@@ -102,11 +110,16 @@ module Top_module(clk,rst);
 
     Data_Memory Data_Memory(
                         .clk(clk),
-                        .rst(rst),
+                        .rst_in(rst_in),
                         .WE(MemWrite),
                         .WD(RD2_Top),
                         .A(ALUResult),
                         .RD(ReadData)
     );
+
+    // Lockstep Lockstep(
+    //                 .Voter_state(Voter_state),
+
+    // );
 
 endmodule
