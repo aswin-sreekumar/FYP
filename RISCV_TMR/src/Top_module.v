@@ -13,6 +13,7 @@
 `include "src/Main_core.v"
 `include "src/Voter.v"
 `include "src/Lockstep.v"
+`include "src/Recovery_Register.v"
 
 module Top_module(clk,main_rst);
 
@@ -42,6 +43,9 @@ module Top_module(clk,main_rst);
 
     // Voter output
     wire [2:0] Voter_state;
+
+    // Recovery module
+    wire Recovery_mode;
 
     Rst_Controller Rst_Controller(
                             .main_rst(main_rst),
@@ -109,13 +113,31 @@ module Top_module(clk,main_rst);
                 .MemWrite(MemWrite),
                 .ALUResult(ALUResult),
                 .RD2_Top(RD2_Top),
-                .Voter_state(Voter_state)
+                .Voter_state(Voter_state),
+                .Recovery_mode(Recovery_mode)
     );
 
     Lockstep Lockstep(
+                    .Recovery_mode(Recovery_mode),
                     .Voter_state(Voter_state),
                     .core_hold(core_hold)
     );
+
+    // Mux Mux_Recovery_to_Register(
+    //                         .a(),
+    //                         .b(),
+    //                         .c(),
+    //                         .s()
+    // );
+
+    // Recovery_Register Recovery_Register(
+    //                     .clk(clk),
+    //                     .rst_in(rst_in),
+    //                     .WE(),
+    //                     .WD(),
+    //                     .RD(),
+    //                     .A()
+    // );
 
     Data_Memory Data_Memory(
                         .clk(clk),

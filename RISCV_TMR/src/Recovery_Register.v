@@ -1,27 +1,26 @@
-// Recovery register in case of total collapse
+// Recovery register
 
-module Recovery_Register(clk,rst_in,WE3,WD3,A1,A3,RD1);
+module Recovery_Register(clk,rst_in,WE,WD,A,RD);
 
-    input clk,rst_in,WE3;
-    input [4:0]A1,A3;
-    input [31:0]WD3;
-    output [31:0]RD1;
+    input clk,rst_in,WE;
+    input [31:0]A,WD;
+    output [31:0]RD;
 
-    reg [31:0] Register [31:0];
-    integer  i;
+    reg [31:0] mem [0:31];
+
+    integer i;
 
     always @ (posedge clk)
     begin
-        if(WE3)
-            Register[A3] <= WD3;
+        if(WE)
+            mem[A] <= WD;
     end
 
-    assign RD1 = (~rst_in) ? 32'd0 : Register[A1];
-    assign RD2 = (~rst_in) ? 32'd0 : Register[A2];
+    assign RD = (~rst_in) ? 32'd0 : mem[A];
 
     initial begin
-        for(i=0;i<32;i++)
-            Register[i] <= {32{1'b0}};
+        for(i=0;i<32;i=i+1)
+            mem[i] = 32'b0;
     end
 
 endmodule

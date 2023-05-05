@@ -9,7 +9,8 @@ module Voter(
     PC_Top_B,MemWrite_B,ALUResult_B,RD2_Top_B,
     PC_Top_C,MemWrite_C,ALUResult_C,RD2_Top_C,
     PC_Top,MemWrite,ALUResult,RD2_Top,
-    Voter_state
+    Voter_state,
+    Recovery_mode
     );
 
     input rst_in,clk;
@@ -21,6 +22,7 @@ module Voter(
     output [31:0] PC_Top,ALUResult,RD2_Top;
     output MemWrite;
     output [2:0] Voter_state;
+    output Recovery_mode;
 
     wire [2:0] Comp_table_PC; //AB BC AC
     wire [2:0] Comp_table_Mem; //AB BC AC
@@ -54,5 +56,6 @@ module Voter(
     );
 
     assign PC_Top = Voter_state=={3'b000}?PC_Top_rollback:PC_top_normal;
-    
+    assign Recovery_mode = Voter_state=={3'b000}?1'b1:1'b0;
+
 endmodule

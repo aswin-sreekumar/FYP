@@ -87,6 +87,4 @@ module Main_core(clk,rst_in,RD_Instr,PC_Top,ReadData,MemWrite,ALUResult,RD2_Top)
                             .c(Result)
     );
 
-    
-
 endmodule
