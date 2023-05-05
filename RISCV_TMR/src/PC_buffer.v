@@ -24,6 +24,6 @@ module PC_buffer(
         PC_Top_buffer[0] <= PC_Top;    
     end
 
-    assign PC_Top_rollback = PC_Top_buffer[2];
+    assign PC_Top_rollback = PC_Top_buffer[1];
 
 endmodule

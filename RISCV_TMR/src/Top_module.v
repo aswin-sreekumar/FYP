@@ -10,9 +10,10 @@
 `include "src/Data_Memory.v"
 `include "src/PC_Adder.v"
 `include "src/Mux.v"
+`include "src/Demux.v"
 `include "src/Main_core.v"
 `include "src/Voter.v"
-`include "src/Lockstep.v"
+`include "src/PC_Controller.v"
 `include "src/Recovery_Register.v"
 
 module Top_module(clk,main_rst);
@@ -43,9 +44,15 @@ module Top_module(clk,main_rst);
 
     // Voter output
     wire [2:0] Voter_state;
+    wire [31:0] PC_voter_output;
 
-    // Recovery module
-    wire Recovery_mode;
+    // Recovery muxes
+    wire MemWrite_data;
+    wire MemWrite_recovery;
+    wire Recovery_Data_MemWrite_sel;
+    wire Data_Recovery_sel;
+    wire [31:0] ReadData_Data;
+    wire [31:0] ReadData_Recovery;
 
     Rst_Controller Rst_Controller(
                             .main_rst(main_rst),
@@ -109,35 +116,45 @@ module Top_module(clk,main_rst);
                 .MemWrite_C(MemWrite_C),
                 .ALUResult_C(ALUResult_C),
                 .RD2_Top_C(RD2_Top_C),
-                .PC_Top(PC_Top),
+                .PC_Top(PC_voter_output),
                 .MemWrite(MemWrite),
                 .ALUResult(ALUResult),
                 .RD2_Top(RD2_Top),
                 .Voter_state(Voter_state),
-                .Recovery_mode(Recovery_mode)
+                .core_hold(core_hold)
     );
 
-    Lockstep Lockstep(
-                    .Recovery_mode(Recovery_mode),
-                    .Voter_state(Voter_state),
-                    .core_hold(core_hold)
+    PC_Controller PC_Controller(
+                .clk(clk),
+                .Voter_state(Voter_state),
+                .PC_voter_output(PC_voter_output),
+                .PC_Top(PC_Top),
+                .Recovery_Data_MemWrite_sel(Recovery_Data_MemWrite_sel),
+                .Data_Recovery_sel(Data_Recovery_sel)
     );
 
-    // Mux Mux_Recovery_to_Register(
-    //                         .a(),
-    //                         .b(),
-    //                         .c(),
-    //                         .s()
-    // );
+    Demux Demux_Recovery_Data_Memwrite(
+                .c(MemWrite),
+                .s(Recovery_Data_MemWrite_sel),
+                .a(MemWrite_data),
+                .b(MemWrite_recovery)
+    );
 
-    // Recovery_Register Recovery_Register(
-    //                     .clk(clk),
-    //                     .rst_in(rst_in),
-    //                     .WE(),
-    //                     .WD(),
-    //                     .RD(),
-    //                     .A()
-    // );
+    Mux Mux_Data_Recovery(
+                .a(ReadData_Data),
+                .b(ReadData_Recovery),
+                .s(Data_Recovery_sel),
+                .c(ReadData)
+    );
+
+    Recovery_Register Recovery_Register(
+                        .clk(clk),
+                        .rst_in(rst_in),
+                        .WE(MemWrite_recovery),
+                        .WD(RD2_Top),
+                        .A(ALUResult),
+                        .RD(ReadData_Recovery)
+    );
 
     Data_Memory Data_Memory(
                         .clk(clk),
@@ -145,7 +162,7 @@ module Top_module(clk,main_rst);
                         .WE(MemWrite),
                         .WD(RD2_Top),
                         .A(ALUResult),
-                        .RD(ReadData)
+                        .RD(ReadData_Data)
     );
 
 endmodule
