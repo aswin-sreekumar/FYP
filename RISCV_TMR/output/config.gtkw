@@ -1,52 +1,30 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Wed Apr 26 10:46:03 2023
+[*] Fri May 05 10:16:44 2023
 [*]
-[dumpfile] "C:\Users\aswin\Desktop\C files\FYP - SEM 8\FYP\Riscv\output\dumpfile.vcd"
-[dumpfile_mtime] "Wed Apr 26 10:44:35 2023"
-[dumpfile_size] 14100
-[savefile] "C:\Users\aswin\Desktop\C files\FYP - SEM 8\FYP\Riscv\output\config.gtkw"
+[dumpfile] "C:\Users\aswin\Desktop\C files\FYP - SEM 8\FYP\RISCV_TMR\output\output\dumpfile.vcd"
+[savefile] "C:\Users\aswin\Desktop\C files\FYP - SEM 8\FYP\RISCV_TMR\output\config.gtkw"
 [timestart] 0
-[size] 1536 801
-[pos] -191 -191
-*-7.148038 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1000 600
+[pos] -1 -1
+*-8.085390 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Top_module_tb.
 [treeopen] Top_module_tb.Top_module.
-[treeopen] Top_module_tb.Top_module.Control_Unit_Top.
-[treeopen] Top_module_tb.Top_module.Hamming_module1.
+[treeopen] Top_module_tb.Top_module.Voter.
 [sst_width] 197
-[signals_width] 228
+[signals_width] 198
 [sst_expanded] 1
-[sst_vpaned_height] 224
-@28
-Top_module_tb.Top_module.Register_File.rst
-Top_module_tb.Top_module.Register_File.clk
+[sst_vpaned_height] 153
 @22
-Top_module_tb.Top_module.PC.PC[31:0]
+Top_module_tb.Top_module.Voter.PC_buffer.PC_Top[31:0]
+Top_module_tb.Top_module.Voter.PC_buffer.PC_Top_rollback[31:0]
+@28
+Top_module_tb.Top_module.Voter.PC_buffer.clk
+Top_module_tb.Top_module.Voter.Voter_state[2:0]
+@22
 Top_module_tb.Top_module.Instruction_Memory.A[31:0]
 Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-@28
-Top_module_tb.Top_module.Control_Unit_Top.ALU_Decoder.ALUOp[1:0]
-Top_module_tb.Top_module.Control_Unit_Top.ALU_Decoder.ALUControl[2:0]
-Top_module_tb.Top_module.Control_Unit_Top.ALU_Decoder.funct3[2:0]
-@22
-Top_module_tb.Top_module.Control_Unit_Top.ALU_Decoder.funct7[6:0]
-Top_module_tb.Top_module.Control_Unit_Top.ALU_Decoder.op[6:0]
-Top_module_tb.Top_module.ALU.A[31:0]
-Top_module_tb.Top_module.ALU.B[31:0]
-Top_module_tb.Top_module.ALU.Result[31:0]
-Top_module_tb.Top_module.Data_Memory.A[31:0]
-Top_module_tb.Top_module.Data_Memory.RD[31:0]
-@28
-Top_module_tb.Top_module.Hamming_module1.inject_error
-@22
-Top_module_tb.Top_module.Hamming_module1.data[31:0]
-Top_module_tb.Top_module.Hamming_module1.hamming_encoder.enc_data[37:0]
-Top_module_tb.Top_module.Hamming_module1.error_injection.error_in_enc_data[37:0]
-Top_module_tb.Top_module.Hamming_module1.error_correction.rcvd_error_data[37:0]
-Top_module_tb.Top_module.Hamming_module1.error_correction.corrected_enc_data[37:0]
-Top_module_tb.Top_module.Hamming_module1.hamming_decoder.rcvd_data[37:0]
 @23
-Top_module_tb.Top_module.Hamming_module1.hamming_decoder.dec_data[31:0]
+Top_module_tb.Top_module.Voter.ALUResult[31:0]
 [pattern_trace] 1
 [pattern_trace] 0

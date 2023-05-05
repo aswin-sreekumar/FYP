@@ -12,12 +12,13 @@
 `include "src/Mux.v"
 `include "src/Main_core.v"
 `include "src/Voter.v"
+`include "src/Lockstep.v"
 
 module Top_module(clk,main_rst);
 
     input clk,main_rst;
 
-    wire rst_in;
+    wire rst_in,core_hold;
     
     // Top level wires
     wire [31:0] PC_Top,RD_Instr;
@@ -40,11 +41,13 @@ module Top_module(clk,main_rst);
     wire MemWrite_C;
 
     // Voter output
-    wire [1:0] Voter_state;
+    wire [2:0] Voter_state;
 
     Rst_Controller Rst_Controller(
                             .main_rst(main_rst),
+                            .core_hold(core_hold),
                             .rst_in(rst_in)
+
     );
  
     Instruction_Memory Instruction_Memory(
@@ -86,9 +89,10 @@ module Top_module(clk,main_rst);
                         .RD2_Top(RD2_Top_C),
                         .ReadData(ReadData)
     );                  
-    
+
     Voter Voter(
                 .rst_in(rst_in),
+                .clk(clk),
                 .PC_Top_A(PC_Top_A),
                 .MemWrite_A(MemWrite_A),
                 .ALUResult_A(ALUResult_A),
@@ -108,6 +112,11 @@ module Top_module(clk,main_rst);
                 .Voter_state(Voter_state)
     );
 
+    Lockstep Lockstep(
+                    .Voter_state(Voter_state),
+                    .core_hold(core_hold)
+    );
+
     Data_Memory Data_Memory(
                         .clk(clk),
                         .rst_in(rst_in),
@@ -116,10 +125,5 @@ module Top_module(clk,main_rst);
                         .A(ALUResult),
                         .RD(ReadData)
     );
-
-    // Lockstep Lockstep(
-    //                 .Voter_state(Voter_state),
-
-    // );
 
 endmodule
