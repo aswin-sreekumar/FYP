@@ -53,6 +53,7 @@ module Top_module(clk,main_rst);
     wire Data_Recovery_sel;
     wire [31:0] ReadData_Data;
     wire [31:0] ReadData_Recovery;
+    wire Recovery_mode;
 
     Rst_Controller Rst_Controller(
                             .main_rst(main_rst),
@@ -120,8 +121,7 @@ module Top_module(clk,main_rst);
                 .MemWrite(MemWrite),
                 .ALUResult(ALUResult),
                 .RD2_Top(RD2_Top),
-                .Voter_state(Voter_state),
-                .core_hold(core_hold)
+                .Voter_state(Voter_state)
     );
 
     PC_Controller PC_Controller(
@@ -129,6 +129,8 @@ module Top_module(clk,main_rst);
                 .Voter_state(Voter_state),
                 .PC_voter_output(PC_voter_output),
                 .PC_Top(PC_Top),
+                .core_hold(core_hold),
+                .Recovery_mode(Recovery_mode),
                 .Recovery_Data_MemWrite_sel(Recovery_Data_MemWrite_sel),
                 .Data_Recovery_sel(Data_Recovery_sel)
     );

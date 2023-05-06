@@ -9,8 +9,7 @@ module Voter(
     PC_Top_B,MemWrite_B,ALUResult_B,RD2_Top_B,
     PC_Top_C,MemWrite_C,ALUResult_C,RD2_Top_C,
     PC_Top,MemWrite,ALUResult,RD2_Top,
-    Voter_state,
-    core_hold
+    Voter_state
     );
 
     input rst_in,clk;
@@ -22,7 +21,6 @@ module Voter(
     output [31:0] PC_Top,ALUResult,RD2_Top;
     output MemWrite;
     output [2:0] Voter_state;
-    output core_hold;
 
     wire [2:0] Comp_table_PC; //AB BC AC
     wire [2:0] Comp_table_Mem; //AB BC AC
@@ -49,5 +47,4 @@ module Voter(
     assign MemWrite = Voter_state[0]?MemWrite_A:Voter_state[1]?MemWrite_B:0;
     assign RD2_Top = Voter_state[0]?RD2_Top_A:Voter_state[1]?RD2_Top_B:Voter_state[2]?RD2_Top_C:0;
 
-    assign core_hold = Voter_state=={3'b000}?1'b1:1'b0;
 endmodule
