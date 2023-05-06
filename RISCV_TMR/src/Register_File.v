@@ -20,13 +20,16 @@ module Register_File(clk,rst_in,WE3,WD3,A1,A2,A3,RD1,RD2);
 
     initial begin
         for(i=0;i<32;i++)
-            Register[i] <= {32{1'b0}};
+            Register[i] = {32{1'b0}};
+        Register[1] = 1;
+        Register[2] = 5;
+        Register[3] = {32{1'b1}};
         
-        // $monitor("\ntime = %d\n", $time, 
-        // "\tRegister[0] = %b\n", Register[0],   
-        // "\tRegister[1] = %b\n", Register[1],
-        // "\tRegister[2] = %b\n", Register[2],
-        // "\tRegister[3] = %b\n", Register[3]);
+        $monitor("\ntime = %d\n", $time, 
+        "\tRegister[0] = %b\n", Register[0],   
+        "\tRegister[1] = %b\n", Register[1],
+        "\tRegister[2] = %b\n", Register[2],
+        "\tRegister[3] = %b\n", Register[3]);
 
     end
 

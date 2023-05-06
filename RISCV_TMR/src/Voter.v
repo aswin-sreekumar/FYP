@@ -1,7 +1,6 @@
 // Verilog code for voter block
 // RISC-V
 
-`include "src/PC_buffer.v"
 module Voter(
     rst_in,
     clk,
@@ -36,15 +35,15 @@ module Voter(
     // assign RD2_Top = RD2_Top_A;
     // assign Voter_state = 3'b111;
 
-    assign Comp_table_PC = {PC_Top_A==PC_Top_B,PC_Top_B==PC_Top_C,PC_Top_A==PC_Top_C};
-    assign Comp_table_ALU = {ALUResult_A==ALUResult_B,ALUResult_B==ALUResult_C,ALUResult_A==ALUResult_C};
-    assign Comp_table_RD2 = {RD2_Top_A==RD2_Top_B,RD2_Top_B==RD2_Top_C,RD2_Top_A==RD2_Top_C};
-    assign Comp_table_Mem = {MemWrite_A==MemWrite_B,MemWrite_B==MemWrite_C,MemWrite_A==MemWrite_C};
+    assign Comp_table_PC = (~rst_in)?32'b0:{PC_Top_A==PC_Top_B,PC_Top_B==PC_Top_C,PC_Top_A==PC_Top_C};
+    assign Comp_table_ALU = (~rst_in)?32'b0:{ALUResult_A==ALUResult_B,ALUResult_B==ALUResult_C,ALUResult_A==ALUResult_C};
+    assign Comp_table_RD2 = (~rst_in)?32'b0:{RD2_Top_A==RD2_Top_B,RD2_Top_B==RD2_Top_C,RD2_Top_A==RD2_Top_C};
+    assign Comp_table_Mem = (~rst_in)?1'b0:{MemWrite_A==MemWrite_B,MemWrite_B==MemWrite_C,MemWrite_A==MemWrite_C};
 
-    assign Voter_state = Comp_table_PC&Comp_table_ALU&Comp_table_Mem&Comp_table_RD2;
-    assign PC_Top = Voter_state[0]?PC_Top_A:Voter_state[1]?PC_Top_B:Voter_state[2]?PC_Top_C:0;
-    assign ALUResult = Voter_state[0]?ALUResult_A:Voter_state[1]?ALUResult_B:Voter_state[2]?ALUResult_C:0;
-    assign MemWrite = Voter_state[0]?MemWrite_A:Voter_state[1]?MemWrite_B:0;
-    assign RD2_Top = Voter_state[0]?RD2_Top_A:Voter_state[1]?RD2_Top_B:Voter_state[2]?RD2_Top_C:0;
+    assign Voter_state = (~rst_in)?3'b111:Comp_table_PC&Comp_table_ALU&Comp_table_Mem&Comp_table_RD2;
+    assign PC_Top = (~rst_in)?32'b0:Voter_state[2]?PC_Top_A:Voter_state[1]?PC_Top_B:Voter_state[0]?PC_Top_C:0;
+    assign ALUResult = (~rst_in)?32'b0:Voter_state[2]?ALUResult_A:Voter_state[1]?ALUResult_B:Voter_state[0]?ALUResult_C:0;
+    assign MemWrite = (~rst_in)?32'b0:Voter_state[2]?MemWrite_A:Voter_state[1]?MemWrite_B:Voter_state[0]?MemWrite_C:0;
+    assign RD2_Top = (~rst_in)?32'b0:Voter_state[2]?RD2_Top_A:Voter_state[1]?RD2_Top_B:Voter_state[0]?RD2_Top_C:0;
 
 endmodule

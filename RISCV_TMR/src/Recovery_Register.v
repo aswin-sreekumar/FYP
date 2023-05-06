@@ -20,7 +20,10 @@ module Recovery_Register(clk,rst_in,WE,WD,A,RD);
 
     initial begin
         for(i=0;i<32;i++)
-            Register[i] <= {32{1'b0}};
+            Register[i] = {32{1'b0}};
+        Register[1] = 1;
+        Register[2] = 5;
+        Register[3] = {32{1'b1}};
     end
 
 endmodule

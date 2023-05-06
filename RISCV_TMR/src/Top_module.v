@@ -24,7 +24,7 @@ module Top_module(clk,main_rst);
     wire rst_in,core_hold;
     
     // Top level wires
-    wire [31:0] PC_Top,RD_Instr;
+    wire [31:0] PC_Top,RD_Instr_mem,RD_Instr;
     wire [31:0] RD2_Top, ALUResult, ReadData;
     wire MemWrite;
 
@@ -46,6 +46,8 @@ module Top_module(clk,main_rst);
     // Voter output
     wire [2:0] Voter_state;
     wire [31:0] PC_voter_output;
+    
+    wire [31:0] RD_Instr_Core_Output;
 
     // Recovery muxes
     wire MemWrite_data;
@@ -69,47 +71,50 @@ module Top_module(clk,main_rst);
     Instruction_Memory Instruction_Memory(
                             .rst_in(rst_in),
                             .A(PC_Top),
-                            .RD(RD_Instr)
+                            .RD(RD_Instr_mem)
     );
 
     assign Core_A_inject_error = 1'b0;
     assign Core_B_inject_error = 1'b0;
-    assign Core_C_inject_error = 1'b1;
+    assign Core_C_inject_error = 1'b0;
 
     Main_core Main_core_A(
                         .clk(clk),
                         .rst_in(rst_in),
-                        .error_inject(Core_A_inject_error),
+                        .inject_error(Core_A_inject_error),
                         .RD_Instr(RD_Instr),
                         .PC_Top(PC_Top_A),
                         .MemWrite(MemWrite_A),
                         .ALUResult(ALUResult_A),
                         .RD2_Top(RD2_Top_A),
-                        .ReadData(ReadData)
+                        .ReadData(ReadData),
+                        .RD_Instr_Core(RD_Instr_Core_Output)
     ); 
 
     Main_core Main_core_B(
                         .clk(clk),
                         .rst_in(rst_in),
-                        .error_inject(Core_B_inject_error),
+                        .inject_error(Core_B_inject_error),
                         .RD_Instr(RD_Instr),
                         .PC_Top(PC_Top_B),
                         .MemWrite(MemWrite_B),
                         .ALUResult(ALUResult_B),
                         .RD2_Top(RD2_Top_B),
-                        .ReadData(ReadData)
+                        .ReadData(ReadData),
+                        .RD_Instr_Core()
     ); 
 
     Main_core Main_core_C(
                         .clk(clk),
                         .rst_in(rst_in),
-                        .error_inject(Core_C_inject_error),
+                        .inject_error(Core_C_inject_error),
                         .RD_Instr(RD_Instr),
                         .PC_Top(PC_Top_C),
                         .MemWrite(MemWrite_C),
                         .ALUResult(ALUResult_C),
                         .RD2_Top(RD2_Top_C),
-                        .ReadData(ReadData)
+                        .ReadData(ReadData),
+                        .RD_Instr_Core()
     );                  
 
     Voter Voter(
@@ -134,15 +139,26 @@ module Top_module(clk,main_rst);
                 .Voter_state(Voter_state)
     );
 
+    Mux Mux_RDInstr(
+                .a(RD_Instr_mem),
+                .b(RD_Instr_recovery),
+                .s(RD_Instr_Mux_sel),
+                .c(RD_Instr)
+    );
+
     PC_Controller PC_Controller(
                 .clk(clk),
+                .rst_in(rst_in),
                 .Voter_state(Voter_state),
                 .PC_voter_output(PC_voter_output),
                 .PC_Top(PC_Top),
+                .RD_Instr(RD_Instr_Core),
                 .core_hold(core_hold),
                 .Recovery_mode(Recovery_mode),
                 .Recovery_Data_MemWrite_sel(Recovery_Data_MemWrite_sel),
-                .Data_Recovery_sel(Data_Recovery_sel)
+                .Data_Recovery_sel(Data_Recovery_sel),
+                .RD_Instr_Mux_sel(RD_Instr_Mux_sel),
+                .RD_Instr_recovery(RD_Instr_recovery)
     );
 
     Demux Demux_Recovery_Data_Memwrite(

@@ -1,18 +1,18 @@
 // Core unit of RISC-V processor
 // Control unit + Register file + ALU
 
-`include "error_injection/Error_injection.v"
+
 
 module Main_core(
             clk,
             rst_in,
-            error_inject,
+            inject_error,
             RD_Instr,
             PC_Top,
             ReadData,
             MemWrite,
             ALUResult,
-            RD2_Top
+            RD2_Top,RD_Instr_Core
     );
 
     input clk,rst_in;
@@ -23,7 +23,10 @@ module Main_core(
     output MemWrite;
     output [31:0] ALUResult, RD2_Top;
 
-    input error_inject;
+    output [31:0] RD_Instr_Core;
+    assign RD_Instr_Core = RD_Instr;
+
+    input inject_error;
 
     wire [31:0] RD1_Top,Imm_Ext_Top,PCPlus4,SrcB,Result;
     wire RegWrite,ALUSrc,ResultSrc;
