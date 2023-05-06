@@ -1,10 +1,10 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Fri May 05 21:54:16 2023
+[*] Sat May 06 07:30:45 2023
 [*]
 [dumpfile] "C:\Users\aswin\Desktop\C files\FYP - SEM 8\FYP\RISCV_TMR\output\dumpfile.vcd"
-[dumpfile_mtime] "Fri May 05 21:53:51 2023"
-[dumpfile_size] 18889
+[dumpfile_mtime] "Sat May 06 07:19:19 2023"
+[dumpfile_size] 24906
 [savefile] "C:\Users\aswin\Desktop\C files\FYP - SEM 8\FYP\RISCV_TMR\output\config.gtkw"
 [timestart] 0
 [size] 1000 600
@@ -12,21 +12,38 @@
 *-8.085390 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Top_module_tb.
 [treeopen] Top_module_tb.Top_module.
+[treeopen] Top_module_tb.Top_module.Main_core_A.
+[treeopen] Top_module_tb.Top_module.Main_core_C.
 [treeopen] Top_module_tb.Top_module.Voter.
 [sst_width] 197
 [signals_width] 198
 [sst_expanded] 1
 [sst_vpaned_height] 153
+@22
+Top_module_tb.Top_module.Main_core_A.RD2_Top[31:0]
+Top_module_tb.Top_module.Voter.RD2_Top_A[31:0]
+Top_module_tb.Top_module.Voter.RD2_Top_B[31:0]
+Top_module_tb.Top_module.Voter.RD2_Top_C[31:0]
+Top_module_tb.Top_module.Voter.RD2_Top[31:0]
 @28
 Top_module_tb.Top_module.Voter.Voter_state[2:0]
 @22
-Top_module_tb.Top_module.Instruction_Memory.A[31:0]
-Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-Top_module_tb.Top_module.Voter.ALUResult[31:0]
+Top_module_tb.Top_module.Voter.PC_Top[31:0]
 @28
 Top_module_tb.Top_module.Rst_Controller.rst_in
 Top_module_tb.Top_module.Rst_Controller.main_rst
-@29
 Top_module_tb.Top_module.Rst_Controller.core_hold
+@22
+Top_module_tb.Top_module.PC_Controller.PC_Top[31:0]
+@28
+Top_module_tb.Top_module.PC_Controller.Voter_state[2:0]
+Top_module_tb.Top_module.PC_Controller.core_hold
+@22
+Top_module_tb.Top_module.PC_Controller.PC_voter_output[31:0]
+Top_module_tb.Top_module.Data_Memory.A[31:0]
+Top_module_tb.Top_module.Data_Memory.RD[31:0]
+Top_module_tb.Top_module.Data_Memory.WD[31:0]
+@29
+Top_module_tb.Top_module.Data_Memory.WE
 [pattern_trace] 1
 [pattern_trace] 0

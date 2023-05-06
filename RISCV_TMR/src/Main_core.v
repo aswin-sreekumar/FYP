@@ -1,7 +1,19 @@
 // Core unit of RISC-V processor
 // Control unit + Register file + ALU
 
-module Main_core(clk,rst_in,RD_Instr,PC_Top,ReadData,MemWrite,ALUResult,RD2_Top);
+`include "error_injection/Error_injection.v"
+
+module Main_core(
+            clk,
+            rst_in,
+            error_inject,
+            RD_Instr,
+            PC_Top,
+            ReadData,
+            MemWrite,
+            ALUResult,
+            RD2_Top
+    );
 
     input clk,rst_in;
     input [31:0] RD_Instr;
@@ -11,12 +23,16 @@ module Main_core(clk,rst_in,RD_Instr,PC_Top,ReadData,MemWrite,ALUResult,RD2_Top)
     output MemWrite;
     output [31:0] ALUResult, RD2_Top;
 
+    input error_inject;
+
     wire [31:0] RD1_Top,Imm_Ext_Top,PCPlus4,SrcB,Result;
     wire RegWrite,ALUSrc,ResultSrc;
     wire [1:0]ImmSrc;
     wire [2:0]ALUControl_Top;
 
     wire OverFlow,Carry,Zero,Negative;
+
+    wire [31:0] RD2_Top_noerror;
 
     PC_Module PC(
         .clk(clk),
@@ -40,7 +56,13 @@ module Main_core(clk,rst_in,RD_Instr,PC_Top,ReadData,MemWrite,ALUResult,RD2_Top)
                             .A2(RD_Instr[24:20]),
                             .A3(RD_Instr[11:7]),
                             .RD1(RD1_Top),
-                            .RD2(RD2_Top)
+                            .RD2(RD2_Top_noerror)
+    );
+
+    Error_injection Error_injection(
+                        .enc_data(RD2_Top_noerror),
+                        .inject_error(inject_error),
+                        .error_in_enc_data(RD2_Top)
     );
 
     Sign_Extend Sign_Extend(

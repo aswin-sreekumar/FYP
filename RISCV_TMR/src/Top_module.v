@@ -15,6 +15,7 @@
 `include "src/Voter.v"
 `include "src/PC_Controller.v"
 `include "src/Recovery_Register.v"
+`include "src/Error_injection.v"
 
 module Top_module(clk,main_rst);
 
@@ -55,6 +56,9 @@ module Top_module(clk,main_rst);
     wire [31:0] ReadData_Recovery;
     wire Recovery_mode;
 
+    // Error injection
+    wire Core_A_inject_error,Core_B_inject_error,Core_C_inject_error;
+
     Rst_Controller Rst_Controller(
                             .main_rst(main_rst),
                             .core_hold(core_hold),
@@ -68,10 +72,14 @@ module Top_module(clk,main_rst);
                             .RD(RD_Instr)
     );
 
+    assign Core_A_inject_error = 1'b0;
+    assign Core_B_inject_error = 1'b0;
+    assign Core_C_inject_error = 1'b1;
+
     Main_core Main_core_A(
                         .clk(clk),
                         .rst_in(rst_in),
-                        // .core_hold(core_hold),
+                        .error_inject(Core_A_inject_error),
                         .RD_Instr(RD_Instr),
                         .PC_Top(PC_Top_A),
                         .MemWrite(MemWrite_A),
@@ -83,6 +91,7 @@ module Top_module(clk,main_rst);
     Main_core Main_core_B(
                         .clk(clk),
                         .rst_in(rst_in),
+                        .error_inject(Core_B_inject_error),
                         .RD_Instr(RD_Instr),
                         .PC_Top(PC_Top_B),
                         .MemWrite(MemWrite_B),
@@ -94,6 +103,7 @@ module Top_module(clk,main_rst);
     Main_core Main_core_C(
                         .clk(clk),
                         .rst_in(rst_in),
+                        .error_inject(Core_C_inject_error),
                         .RD_Instr(RD_Instr),
                         .PC_Top(PC_Top_C),
                         .MemWrite(MemWrite_C),
