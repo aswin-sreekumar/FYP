@@ -40,10 +40,11 @@ module Voter(
     assign Comp_table_RD2 = (~rst_in)?32'b0:{RD2_Top_A==RD2_Top_B,RD2_Top_B==RD2_Top_C,RD2_Top_A==RD2_Top_C};
     assign Comp_table_Mem = (~rst_in)?1'b0:{MemWrite_A==MemWrite_B,MemWrite_B==MemWrite_C,MemWrite_A==MemWrite_C};
 
-    assign Voter_state = (~rst_in)?3'b111:Comp_table_PC&Comp_table_ALU&Comp_table_Mem&Comp_table_RD2;
-    assign PC_Top = (~rst_in)?32'b0:Voter_state[2]?PC_Top_A:Voter_state[1]?PC_Top_B:Voter_state[0]?PC_Top_C:0;
-    assign ALUResult = (~rst_in)?32'b0:Voter_state[2]?ALUResult_A:Voter_state[1]?ALUResult_B:Voter_state[0]?ALUResult_C:0;
-    assign MemWrite = (~rst_in)?32'b0:Voter_state[2]?MemWrite_A:Voter_state[1]?MemWrite_B:Voter_state[0]?MemWrite_C:0;
-    assign RD2_Top = (~rst_in)?32'b0:Voter_state[2]?RD2_Top_A:Voter_state[1]?RD2_Top_B:Voter_state[0]?RD2_Top_C:0;
+    assign Voter_state = (~rst_in)?3'b111:3'b000;
+    // assign Voter_state = (~rst_in)?3'b111:Comp_table_PC&Comp_table_ALU&Comp_table_Mem&Comp_table_RD2;
+    assign PC_Top = (~rst_in)?32'b0:Voter_state[2]?PC_Top_A:Voter_state[1]?PC_Top_B:Voter_state[0]?PC_Top_C:PC_Top_A;
+    assign ALUResult = (~rst_in)?32'b0:Voter_state[2]?ALUResult_A:Voter_state[1]?ALUResult_B:Voter_state[0]?ALUResult_C:ALUResult_A;
+    assign MemWrite = (~rst_in)?32'b0:Voter_state[2]?MemWrite_A:Voter_state[1]?MemWrite_B:Voter_state[0]?MemWrite_C:MemWrite_A;
+    assign RD2_Top = (~rst_in)?32'b0:Voter_state[2]?RD2_Top_A:Voter_state[1]?RD2_Top_B:Voter_state[0]?RD2_Top_C:RD2_Top_A;
 
 endmodule

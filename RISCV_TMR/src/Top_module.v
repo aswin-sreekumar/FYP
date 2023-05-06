@@ -13,7 +13,7 @@
 `include "src/Demux.v"
 `include "src/Main_core.v"
 `include "src/Voter.v"
-`include "src/PC_Controller.v"
+`include "src/Lockstep.v"
 `include "src/Recovery_Register.v"
 `include "src/Error_injection.v"
 
@@ -50,13 +50,12 @@ module Top_module(clk,main_rst);
     wire [31:0] RD_Instr_Core_Output;
 
     // Recovery muxes
-    wire MemWrite_data;
-    wire MemWrite_recovery;
-    wire Recovery_Data_MemWrite_sel;
-    wire Data_Recovery_sel;
     wire [31:0] ReadData_Data;
     wire [31:0] ReadData_Recovery;
     wire Recovery_mode;
+    wire Mux_Instr_sel;
+    wire Mux_Data_sel;
+    wire [31:0] Rollback_instr;
 
     // Error injection
     wire Core_A_inject_error,Core_B_inject_error,Core_C_inject_error;
@@ -132,54 +131,44 @@ module Top_module(clk,main_rst);
                 .MemWrite_C(MemWrite_C),
                 .ALUResult_C(ALUResult_C),
                 .RD2_Top_C(RD2_Top_C),
-                .PC_Top(PC_voter_output),
+                .PC_Top(PC_Top),
                 .MemWrite(MemWrite),
                 .ALUResult(ALUResult),
                 .RD2_Top(RD2_Top),
                 .Voter_state(Voter_state)
     );
 
+    Lockstep Lockstep(
+                    .clk(clk),
+                    .rst_in(rst_in),
+                    .Voter_state(Voter_state),
+                    .RD_Instr(RD_Instr),
+                    .core_hold(core_hold),
+                    .Recovery_mode(Recovery_mode),
+                    .Mux_Instr_sel(Mux_Instr_sel),
+                    .Mux_Data_sel(Mux_Data_sel),
+                    .Rollback_instr(Rollback_instr)
+    );
+
     Mux Mux_RDInstr(
                 .a(RD_Instr_mem),
-                .b(RD_Instr_recovery),
-                .s(RD_Instr_Mux_sel),
+                .b(Rollback_instr),
+                .s(Mux_Instr_sel),
                 .c(RD_Instr)
-    );
-
-    PC_Controller PC_Controller(
-                .clk(clk),
-                .rst_in(rst_in),
-                .Voter_state(Voter_state),
-                .PC_voter_output(PC_voter_output),
-                .PC_Top(PC_Top),
-                .RD_Instr(RD_Instr_Core),
-                .core_hold(core_hold),
-                .Recovery_mode(Recovery_mode),
-                .Recovery_Data_MemWrite_sel(Recovery_Data_MemWrite_sel),
-                .Data_Recovery_sel(Data_Recovery_sel),
-                .RD_Instr_Mux_sel(RD_Instr_Mux_sel),
-                .RD_Instr_recovery(RD_Instr_recovery)
-    );
-
-    Demux Demux_Recovery_Data_Memwrite(
-                .c(MemWrite),
-                .s(Recovery_Data_MemWrite_sel),
-                .a(MemWrite_data),
-                .b(MemWrite_recovery)
     );
 
     Mux Mux_Data_Recovery(
                 .a(ReadData_Data),
                 .b(ReadData_Recovery),
-                .s(Data_Recovery_sel),
+                .s(Mux_Data_sel),
                 .c(ReadData)
     );
 
     Recovery_Register Recovery_Register(
                         .clk(clk),
                         .rst_in(rst_in),
-                        .WE(MemWrite_recovery),
-                        .WD(RD2_Top),
+                        .WE(1'b0),
+                        .WD(),
                         .A(ALUResult),
                         .RD(ReadData_Recovery)
     );

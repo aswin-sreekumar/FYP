@@ -1,17 +1,18 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sat May 06 14:48:40 2023
+[*] Sat May 06 19:46:47 2023
 [*]
 [dumpfile] "C:\Users\aswin\Desktop\C files\FYP - SEM 8\FYP\RISCV_TMR\output\dumpfile.vcd"
-[dumpfile_mtime] "Sat May 06 14:48:26 2023"
-[dumpfile_size] 21166
+[dumpfile_mtime] "Sat May 06 19:45:13 2023"
+[dumpfile_size] 22666
 [savefile] "C:\Users\aswin\Desktop\C files\FYP - SEM 8\FYP\RISCV_TMR\output\config.gtkw"
 [timestart] 0
 [size] 1000 600
-[pos] -183 -142
+[pos] -1 -1
 *-8.085390 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Top_module_tb.
 [treeopen] Top_module_tb.Top_module.
+[treeopen] Top_module_tb.Top_module.Main_core_A.
 [treeopen] Top_module_tb.Top_module.Voter.
 [sst_width] 262
 [signals_width] 238
@@ -24,53 +25,31 @@ Top_module_tb.Top_module.Rst_Controller.rst_in
 Top_module_tb.Top_module.Rst_Controller.core_hold
 @22
 Top_module_tb.Top_module.Instruction_Memory.A[31:0]
-@c00022
 Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
+Top_module_tb.Top_module.Main_core_A.Register_File.A1[4:0]
+Top_module_tb.Top_module.Main_core_A.Register_File.A2[4:0]
+Top_module_tb.Top_module.Main_core_A.Register_File.A3[4:0]
+Top_module_tb.Top_module.Main_core_A.Register_File.RD1[31:0]
+Top_module_tb.Top_module.Main_core_A.Register_File.RD2[31:0]
+Top_module_tb.Top_module.Main_core_A.Register_File.WD3[31:0]
 @28
-(0)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(1)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(2)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(3)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(4)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(5)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(6)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(7)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(8)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(9)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(10)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(11)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(12)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(13)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(14)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(15)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(16)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(17)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(18)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(19)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(20)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(21)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(22)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(23)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(24)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(25)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(26)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(27)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(28)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(29)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(30)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-(31)Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-@1401200
--group_end
-@28
-Top_module_tb.Top_module.PC_Controller.Voter_state[2:0]
-Top_module_tb.Top_module.PC_Controller.Recovery_mode
-Top_module_tb.Top_module.PC_Controller.RD_Instr_Mux_sel
-Top_module_tb.Top_module.PC_Controller.Data_Recovery_sel
-Top_module_tb.Top_module.PC_Controller.Recovery_Data_MemWrite_sel
+Top_module_tb.Top_module.Lockstep.Voter_state[2:0]
+Top_module_tb.Top_module.Lockstep.Recovery_mode
 @22
-Top_module_tb.Top_module.PC_Controller.PC_Top[31:0]
-Top_module_tb.Top_module.PC_Controller.Rollback_instr[31:0]
+Top_module_tb.Top_module.Lockstep.RD_Instr[31:0]
+@28
+Top_module_tb.Top_module.Lockstep.Recovery_stage[2:0]
+Top_module_tb.Top_module.Lockstep.Mux_Instr_sel
+@22
+Top_module_tb.Top_module.Lockstep.Rollback_instr[31:0]
+@28
+Top_module_tb.Top_module.Mux_RDInstr.s
+@22
+Top_module_tb.Top_module.Mux_RDInstr.a[31:0]
+Top_module_tb.Top_module.Mux_RDInstr.b[31:0]
+Top_module_tb.Top_module.Mux_RDInstr.c[31:0]
+Top_module_tb.Top_module.Data_Memory.A[31:0]
 @23
-Top_module_tb.Top_module.PC_Controller.RD_Instr[31:0]
+Top_module_tb.Top_module.Data_Memory.RD[31:0]
 [pattern_trace] 1
 [pattern_trace] 0
