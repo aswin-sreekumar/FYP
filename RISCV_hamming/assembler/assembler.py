@@ -7,7 +7,7 @@ asm_file = 'memory/program.asm'
 hex_file = 'memory/instructions.hex'
 
 cnv = AssemblyConverter(output_mode = 'a', nibble_mode = False, hex_mode = True)
-addr_count = 0;
+addr_count = 0
 f_asm = open(asm_file,'r')
 f_hex = open(hex_file,'w')
 for line in f_asm:

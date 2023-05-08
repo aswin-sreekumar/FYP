@@ -25,7 +25,8 @@ module Data_Memory(clk,rst,WE,WD,A,RD);
         "\tMemory[0] = %h\n", mem[0],   
         "\tMemory[1] = %h\n", mem[1],
         "\tMemory[2] = %h\n", mem[2],
-        "\tMemory[3] = %h\n", mem[3]);
+        "\tMemory[3] = %h\n", mem[3],
+        "\tMemory[4] = %h\n", mem[4]);
     end
 
 endmodule

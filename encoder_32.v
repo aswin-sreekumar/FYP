@@ -1,5 +1,5 @@
 module encoder_32 (
-  input [31:0] data [0:31],
+  input reg [31:0] data [0:31],
   output reg [37:0] enc_data [0:31]
 );
 

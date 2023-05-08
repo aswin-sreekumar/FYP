@@ -11,13 +11,14 @@
 `include "src/Mux.v"
 `include "src/Main_core.v"
 `include "src/Voter.v"
+`include "hamming/hamming_decoder.v"
 
 module Top_module(clk,rst);
 
     input clk,rst;
     
     // Top level wires
-    wire [31:0] PC_Top,RD_Instr;
+    wire [31:0] PC_Top,RD_Instr, enc_RD_Instr;
     wire [31:0] RD2_Top, ALUResult, ReadData;
     wire MemWrite;
 
@@ -43,7 +44,12 @@ module Top_module(clk,rst);
     Instruction_Memory Instruction_Memory(
                             .rst(rst),
                             .A(PC_Top),
-                            .RD(RD_Instr)
+                            .RD(enc_RD_Instr)
+    );
+
+    hamming_decoder decode_instr(
+        .rcvd_data(enc_RD_Instr),
+        .dec_data(RD_Instr)
     );
 
     Main_core Main_core_A(
@@ -108,5 +114,5 @@ module Top_module(clk,rst);
                         .A(ALUResult),
                         .RD(ReadData)
     );
-
+    
 endmodule
