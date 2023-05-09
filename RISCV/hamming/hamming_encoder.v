@@ -1,4 +1,6 @@
-module encoder (input [31:0] data, output reg [37:0] enc_data);
+// Verilog code for Hamming encoder block
+
+module hamming_encoder (input [31:0] data , output reg [37:0] enc_data);
     wire [5:0] parity;
     integer pptr, mptr, i, j;
     // for encoding
@@ -22,6 +24,5 @@ module encoder (input [31:0] data, output reg [37:0] enc_data);
                 end
             end
         end
-        $display("%h", enc_data);
     end
 endmodule

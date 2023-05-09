@@ -13,4 +13,8 @@ module PC_Module(clk,rst,PC,PC_Next);
         else
             PC <= PC_Next;
     end
+
+    initial begin
+        PC=32'b0;
+    end
 endmodule

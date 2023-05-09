@@ -21,7 +21,7 @@ initial begin
     // data=32'd8456;
     // inject_error=0; #20;
     // inject_error=1; #20;
-    data=32'd12; #20;
+    data=32'd4; #20;
     // inject_error=0; #20;
     // inject_error=1; #20;
     // inject_error=0; #20;

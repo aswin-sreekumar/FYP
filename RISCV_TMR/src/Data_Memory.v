@@ -3,8 +3,9 @@
 module Data_Memory(clk,rst,WE,WD,A,RD);
 
     input clk,rst,WE;
-    input [31:0]A,WD;
-    output [31:0]RD;
+    input [31:0] A;
+    input [31:0] WD; 
+    output [31:0] RD;
 
     reg [31:0] mem [0:31];
 
@@ -25,8 +26,7 @@ module Data_Memory(clk,rst,WE,WD,A,RD);
         "\tMemory[0] = %h\n", mem[0],   
         "\tMemory[1] = %h\n", mem[1],
         "\tMemory[2] = %h\n", mem[2],
-        "\tMemory[3] = %h\n", mem[3],
-        "\tMemory[4] = %h\n", mem[4]);
+        "\tMemory[3] = %h\n", mem[3]);
     end
 
 endmodule

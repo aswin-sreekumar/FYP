@@ -12,15 +12,17 @@
 `include "src/Main_core.v"
 `include "src/Voter.v"
 `include "hamming/hamming_decoder.v"
+`include "hamming/hamming_encoder.v"
 
 module Top_module(clk,rst);
 
     input clk,rst;
     
     // Top level wires
-    wire [31:0] PC_Top,RD_Instr, enc_RD_Instr;
-    wire [31:0] RD2_Top, ALUResult, ReadData;
+    wire [31:0] PC_Top,RD_Instr;
+    wire [31:0] ALUResult, ReadData, RD2_Top;
     wire MemWrite;
+    wire [37:0] enc_RD_Instr;
 
     // Core A wires
     wire [31:0] PC_Top_A;
@@ -38,9 +40,8 @@ module Top_module(clk,rst);
     wire MemWrite_C;
 
     // Voter output
-    wire [1:0] Voter_state;
+    wire [2:0] Voter_state;
 
- 
     Instruction_Memory Instruction_Memory(
                             .rst(rst),
                             .A(PC_Top),
@@ -114,5 +115,15 @@ module Top_module(clk,rst);
                         .A(ALUResult),
                         .RD(ReadData)
     );
+
+    // hamming_encoder enc_WD(
+    //     .data(og_wd),
+    //     .enc_data(RD2_Top)
+    // );
+
+    // hamming_decoder dec_data(
+    //     .rcvd_data(ENC_Data),
+    //     .dec_data(ReadData)
+    // );
     
 endmodule

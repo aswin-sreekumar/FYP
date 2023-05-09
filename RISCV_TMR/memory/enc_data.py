@@ -1,5 +1,3 @@
-# RISC-V assembler
-# Python code for converting RISC-V ASM into Machine code
 def encode(hex_str):
     p = 6
     msg = format(int(hex_str, 16), '032b')
@@ -27,21 +25,14 @@ def encode(hex_str):
     h = hex(int(res, 2))[2:].zfill(len(res) // 4).upper()
     return h
 
-from riscv_assembler.convert import *
-
-asm_file = 'memory/program.asm'
-hex_file = 'memory/instructions.hex'
-
-cnv = AssemblyConverter(output_mode = 'a', nibble_mode = False, hex_mode = True)
+hex_file="memory/data.hex"
+enc_hex_file="memory/enc_data.hex"
 addr_count = 0
-f_asm = open(asm_file,'r')
-f_hex = open(hex_file,'w')
-for line in f_asm:
-    f_hex.write("@"+str(hex(addr_count))[2:]+"\n")
-    temp = cnv(line)
-    result=temp[0][:2]+encode(temp[0][2:])
-    f_hex.write(result+"\n")
-    addr_count += 4
+f_hex = open(hex_file,'r')
+f_enc = open(enc_hex_file,'w')
+for line in f_hex:
+    result=encode(line)
+    f_enc.write(result+"\n")
 
-f_asm.close()
+f_enc.close()
 f_hex.close()
