@@ -57,6 +57,7 @@ module Top_module(clk,main_rst);
     wire Mux_Data_sel;
     wire [31:0] Rollback_instr;
     wire [31:0] PC_Top_lockstep;
+    wire [31:0] PC_changed;
 
     // Error injection
     wire Core_A_inject_error,Core_B_inject_error,Core_C_inject_error;
@@ -82,6 +83,7 @@ module Top_module(clk,main_rst);
                         .clk(clk),
                         .rst_in(rst_in),
                         .inject_error(Core_A_inject_error),
+                        .PC_changed(PC_changed),
                         .RD_Instr(RD_Instr),
                         .PC_Top(PC_Top_A),
                         .MemWrite(MemWrite_A),
@@ -132,7 +134,7 @@ module Top_module(clk,main_rst);
                 .MemWrite_C(MemWrite_C),
                 .ALUResult_C(ALUResult_C),
                 .RD2_Top_C(RD2_Top_C),
-                .PC_Top(PC_Top),
+                .PC_Top(PC_Top_lockstep),
                 .MemWrite(MemWrite),
                 .ALUResult(ALUResult),
                 .RD2_Top(RD2_Top),
@@ -143,11 +145,15 @@ module Top_module(clk,main_rst);
                     .clk(clk),
                     .rst_in(rst_in),
                     .Voter_state(Voter_state),
+                    .PC_Top_lockstep(PC_Top_lockstep),
                     .RD_Instr(RD_Instr),
                     .core_hold(core_hold),
                     .Recovery_mode(Recovery_mode),
                     .Mux_Instr_sel(Mux_Instr_sel),
                     .Mux_Data_sel(Mux_Data_sel),
+                    .Write_en(Write_en),
+                    .PC_Top(PC_Top),
+                    .PC_changed(PC_changed),
                     .Rollback_instr(Rollback_instr)
     );
 
@@ -165,11 +171,18 @@ module Top_module(clk,main_rst);
                 .c(ReadData)
     );
 
+    Demux Demux_write_en(
+                .s(Write_en),
+                .c(MemWrite),
+                .a(Data_write_en),
+                .b(Recovery_write_en)
+    );
+
     Recovery_Register Recovery_Register(
                         .clk(clk),
                         .rst_in(rst_in),
-                        .WE(1'b0),
-                        .WD(),
+                        .WE(Recovery_write_en),
+                        .WD(RD2_Top),
                         .A(ALUResult),
                         .RD(ReadData_Recovery)
     );
@@ -177,7 +190,7 @@ module Top_module(clk,main_rst);
     Data_Memory Data_Memory(
                         .clk(clk),
                         .rst_in(rst_in),
-                        .WE(MemWrite),
+                        .WE(Data_write_en),
                         .WD(RD2_Top),
                         .A(ALUResult),
                         .RD(ReadData_Data)

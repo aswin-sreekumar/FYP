@@ -1,10 +1,10 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Tue May 09 14:23:23 2023
+[*] Tue May 09 22:42:58 2023
 [*]
 [dumpfile] "C:\Users\aswin\Desktop\C files\FYP - SEM 8\FYP\RISCV_TMR\output\dumpfile.vcd"
-[dumpfile_mtime] "Tue May 09 14:22:30 2023"
-[dumpfile_size] 29456
+[dumpfile_mtime] "Tue May 09 22:41:25 2023"
+[dumpfile_size] 29186
 [savefile] "C:\Users\aswin\Desktop\C files\FYP - SEM 8\FYP\RISCV_TMR\output\config.gtkw"
 [timestart] 0
 [size] 1536 801
@@ -23,9 +23,7 @@ Top_module_tb.Top_module.clk
 Top_module_tb.Top_module.Rst_Controller.main_rst
 Top_module_tb.Top_module.Lockstep.Voter_state[2:0]
 Top_module_tb.Top_module.Lockstep.Recovery_mode
-@29
 Top_module_tb.Top_module.Lockstep.Recovery_stage[3:0]
-@28
 Top_module_tb.Top_module.Lockstep.Mux_Data_sel
 Top_module_tb.Top_module.Lockstep.Mux_Instr_sel
 Top_module_tb.Top_module.Lockstep.Voter_state[2:0]
@@ -45,5 +43,17 @@ Top_module_tb.Top_module.Mux_RDInstr.b[31:0]
 Top_module_tb.Top_module.Mux_RDInstr.c[31:0]
 @28
 Top_module_tb.Top_module.Mux_RDInstr.s
+Top_module_tb.Top_module.Lockstep.Full_match_stage[1:0]
+Top_module_tb.Top_module.Lockstep.Full_match
+Top_module_tb.Top_module.Demux_write_en.c
+Top_module_tb.Top_module.Demux_write_en.a
+Top_module_tb.Top_module.Demux_write_en.b
+Top_module_tb.Top_module.Demux_write_en.s
+@22
+Top_module_tb.Top_module.Lockstep.PC_Top_buffer[31:0]
+Top_module_tb.Top_module.Lockstep.PC_Top_lockstep[31:0]
+Top_module_tb.Top_module.Main_core_A.RD_Instr[31:0]
+@23
+Top_module_tb.Top_module.Main_core_A.PC_Top[31:0]
 [pattern_trace] 1
 [pattern_trace] 0

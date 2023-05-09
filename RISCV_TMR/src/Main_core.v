@@ -8,6 +8,7 @@ module Main_core(
             rst_in,
             inject_error,
             RD_Instr,
+            PC_changed,
             PC_Top,
             ReadData,
             MemWrite,
@@ -17,6 +18,7 @@ module Main_core(
 
     input clk,rst_in;
     input [31:0] RD_Instr;
+    input [31:0] PC_changed;
     output [31:0] PC_Top;
 
     input [31:0] ReadData;
@@ -40,6 +42,7 @@ module Main_core(
     PC_Module PC(
         .clk(clk),
         .rst_in(rst_in),
+        .PC_changed(PC_changed),
         .PC(PC_Top),
         .PC_Next(PCPlus4)
     );

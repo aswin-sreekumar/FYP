@@ -23,7 +23,11 @@ module Recovery_Register(clk,rst_in,WE,WD,A,RD);
             Register[i] = {32{1'b0}};
         Register[1] = 3;
         Register[2] = 9;
-        Register[3] = 32'b10101010101010101010101010101010;
+        Register[3] = 15;
+    // $monitor("\ntime = %d\n", $time, 
+    // "\tRegister[0] = %b\n", Register[0],   
+    // "\tRegister[1] = %b\n", Register[1],
+    // "\tRegister[2] = %b\n", Register[2],
+    // "\tRegister[3] = %b\n", Register[3]);
     end
-
 endmodule
