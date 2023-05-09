@@ -21,8 +21,8 @@ module Recovery_Register(clk,rst_in,WE,WD,A,RD);
     initial begin
         for(i=0;i<32;i++)
             Register[i] = {32{1'b0}};
-        Register[1] = 1;
-        Register[2] = 5;
+        Register[1] = 3;
+        Register[2] = 9;
         Register[3] = 32'b10101010101010101010101010101010;
     end
 

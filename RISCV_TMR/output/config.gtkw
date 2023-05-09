@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sat May 06 19:46:47 2023
+[*] Tue May 09 14:23:23 2023
 [*]
 [dumpfile] "C:\Users\aswin\Desktop\C files\FYP - SEM 8\FYP\RISCV_TMR\output\dumpfile.vcd"
-[dumpfile_mtime] "Sat May 06 19:45:13 2023"
-[dumpfile_size] 22666
+[dumpfile_mtime] "Tue May 09 14:22:30 2023"
+[dumpfile_size] 29456
 [savefile] "C:\Users\aswin\Desktop\C files\FYP - SEM 8\FYP\RISCV_TMR\output\config.gtkw"
 [timestart] 0
-[size] 1000 600
+[size] 1536 801
 [pos] -1 -1
-*-8.085390 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.594643 204 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Top_module_tb.
 [treeopen] Top_module_tb.Top_module.
 [treeopen] Top_module_tb.Top_module.Main_core_A.
@@ -17,39 +17,33 @@
 [sst_width] 262
 [signals_width] 238
 [sst_expanded] 1
-[sst_vpaned_height] 153
+[sst_vpaned_height] 224
 @28
 Top_module_tb.Top_module.clk
 Top_module_tb.Top_module.Rst_Controller.main_rst
-Top_module_tb.Top_module.Rst_Controller.rst_in
-Top_module_tb.Top_module.Rst_Controller.core_hold
+Top_module_tb.Top_module.Lockstep.Voter_state[2:0]
+Top_module_tb.Top_module.Lockstep.Recovery_mode
+@29
+Top_module_tb.Top_module.Lockstep.Recovery_stage[3:0]
+@28
+Top_module_tb.Top_module.Lockstep.Mux_Data_sel
+Top_module_tb.Top_module.Lockstep.Mux_Instr_sel
+Top_module_tb.Top_module.Lockstep.Voter_state[2:0]
 @22
 Top_module_tb.Top_module.Instruction_Memory.A[31:0]
 Top_module_tb.Top_module.Instruction_Memory.RD[31:0]
-Top_module_tb.Top_module.Main_core_A.Register_File.A1[4:0]
-Top_module_tb.Top_module.Main_core_A.Register_File.A2[4:0]
-Top_module_tb.Top_module.Main_core_A.Register_File.A3[4:0]
-Top_module_tb.Top_module.Main_core_A.Register_File.RD1[31:0]
-Top_module_tb.Top_module.Main_core_A.Register_File.RD2[31:0]
-Top_module_tb.Top_module.Main_core_A.Register_File.WD3[31:0]
-@28
-Top_module_tb.Top_module.Lockstep.Voter_state[2:0]
-Top_module_tb.Top_module.Lockstep.Recovery_mode
-@22
-Top_module_tb.Top_module.Lockstep.RD_Instr[31:0]
-@28
-Top_module_tb.Top_module.Lockstep.Recovery_stage[2:0]
-Top_module_tb.Top_module.Lockstep.Mux_Instr_sel
-@22
 Top_module_tb.Top_module.Lockstep.Rollback_instr[31:0]
+Top_module_tb.Top_module.Lockstep.RD_Instr_buffer[31:0]
+Top_module_tb.Top_module.Mux_Data_Recovery.a[31:0]
+Top_module_tb.Top_module.Mux_Data_Recovery.b[31:0]
+Top_module_tb.Top_module.Mux_Data_Recovery.c[31:0]
 @28
-Top_module_tb.Top_module.Mux_RDInstr.s
+Top_module_tb.Top_module.Mux_Data_Recovery.s
 @22
 Top_module_tb.Top_module.Mux_RDInstr.a[31:0]
 Top_module_tb.Top_module.Mux_RDInstr.b[31:0]
 Top_module_tb.Top_module.Mux_RDInstr.c[31:0]
-Top_module_tb.Top_module.Data_Memory.A[31:0]
-@23
-Top_module_tb.Top_module.Data_Memory.RD[31:0]
+@28
+Top_module_tb.Top_module.Mux_RDInstr.s
 [pattern_trace] 1
 [pattern_trace] 0

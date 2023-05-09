@@ -56,6 +56,7 @@ module Top_module(clk,main_rst);
     wire Mux_Instr_sel;
     wire Mux_Data_sel;
     wire [31:0] Rollback_instr;
+    wire [31:0] PC_Top_lockstep;
 
     // Error injection
     wire Core_A_inject_error,Core_B_inject_error,Core_C_inject_error;
