@@ -1,3 +1,5 @@
+# Python SEC-DED encoder for data memory
+
 def encode(hex_str):
     p = 6
     msg = format(int(hex_str, 16), '032b')
@@ -28,11 +30,14 @@ def encode(hex_str):
     h = hex(int(res, 2))[2:].zfill((len(res)+1) // 4).upper()
     return h
 
+# File paths
 hex_file="memory/data.hex"
 enc_hex_file="memory/enc_data.hex"
+
 addr_count = 0
 f_hex = open(hex_file,'r')
 f_enc = open(enc_hex_file,'w')
+
 for line in f_hex:
     result=encode(line)
     f_enc.write(result+"\n")

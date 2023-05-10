@@ -1,4 +1,7 @@
 // Lockstep module
+// Includes Roll-back feature when error occurs
+// Includes lockstep when output is verified from Voter block
+// Master control block for all MUXs to instructions and data operations in Top_module
 
 module Lockstep(
     clk,
@@ -24,15 +27,13 @@ module Lockstep(
     output [31:0] RD_Instr;
     output Write_en;
     output [31:0] PC_changed;
-
-    reg [31:0] RD_Instr_buffer;
-
-    reg [3:0] Recovery_stage;
-    reg [31:0] Rollback_instr_buffer;
-
     output [31:0] Rollback_instr;
     output [31:0] PC_Top;
-    assign Rollback_instr = Rollback_instr_buffer;
+    output Mux_Instr_sel,Mux_Data_sel;
+
+    reg [31:0] RD_Instr_buffer;
+    reg [3:0] Recovery_stage;
+    reg [31:0] Rollback_instr_buffer;
     reg Mux_Instr_sel_buffer;
     reg Mux_Data_sel_buffer;
     reg Write_en_buffer;
@@ -40,7 +41,6 @@ module Lockstep(
     reg [31:0] PC_Top_buffer;
 
     assign Write_en = Write_en_buffer;
-    output Mux_Instr_sel,Mux_Data_sel;
     // assign Mux_Data_sel = Mux_Data_sel_buffer;
     assign Mux_Instr_sel = Mux_Instr_sel_buffer;
     assign Mux_Data_sel = Mux_Data_sel_buffer;
@@ -49,6 +49,8 @@ module Lockstep(
     assign Full_match = (~rst_in)?1'b0:(Voter_state=={3'b111})?1'b1:1'b0;
     assign PC_Top = PC_Top_lockstep-PC_Top_buffer;
     assign PC_changed = PC_Top;
+    assign Rollback_instr = Rollback_instr_buffer;
+
     initial begin
         Rollback_instr_buffer = 32'b0;
         Recovery_stage = 4'b0000;

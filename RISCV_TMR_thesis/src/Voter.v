@@ -37,30 +37,31 @@ module Voter(
     // assign RD2_Top = RD2_Top_A;
     // assign Voter_state = 3'b111;
 
-    always @(posedge clk) begin
-        if(~rst_in)
-            Voter_state = 3'b111;
-        if(rst_in&(state==0)) begin
-            Voter_state = 3'b111;
-            state = 1;
-        end
-        else if(rst_in&(state==1)) begin
-            Voter_state = 3'b000;
-            state = 2;
-        end
-        else if(rst_in&(state==2)) begin
-            Voter_state = 3'b111;
-            state = 3;
-        end
-        else if(rst_in&(state==3)) begin
-            Voter_state = 3'b111;
-            state = 4;
-        end
-        else if(rst_in&(state==4)) begin
-            Voter_state = 3'b111;
-            state = 0;
-        end
-    end
+    // Creating Voter state FSM for debugging
+    // always @(posedge clk) begin
+    //     if(~rst_in)
+    //         Voter_state = 3'b111;
+    //     if(rst_in&(state==0)) begin
+    //         Voter_state = 3'b111;
+    //         state = 1;
+    //     end
+    //     else if(rst_in&(state==1)) begin
+    //         Voter_state = 3'b000;
+    //         state = 2;
+    //     end
+    //     else if(rst_in&(state==2)) begin
+    //         Voter_state = 3'b111;
+    //         state = 3;
+    //     end
+    //     else if(rst_in&(state==3)) begin
+    //         Voter_state = 3'b111;
+    //         state = 4;
+    //     end
+    //     else if(rst_in&(state==4)) begin
+    //         Voter_state = 3'b111;
+    //         state = 0;
+    //     end
+    // end
 
     assign Comp_table_PC = (~rst_in)?32'b0:{PC_Top_A==PC_Top_B,PC_Top_B==PC_Top_C,PC_Top_A==PC_Top_C};
     assign Comp_table_ALU = (~rst_in)?32'b0:{ALUResult_A==ALUResult_B,ALUResult_B==ALUResult_C,ALUResult_A==ALUResult_C};
@@ -68,7 +69,7 @@ module Voter(
     assign Comp_table_Mem = (~rst_in)?1'b0:{MemWrite_A==MemWrite_B,MemWrite_B==MemWrite_C,MemWrite_A==MemWrite_C};
 
     // assign Voter_state = (~rst_in)?3'b111:3'b000;
-    // assign Voter_state = (~rst_in)?3'b111:Comp_table_PC&Comp_table_ALU&Comp_table_Mem&Comp_table_RD2;
+    assign Voter_state = (~rst_in)?3'b111:Comp_table_PC&Comp_table_ALU&Comp_table_Mem&Comp_table_RD2;
     assign PC_Top = (~rst_in)?32'b0:Voter_state[2]?PC_Top_A:Voter_state[1]?PC_Top_B:Voter_state[0]?PC_Top_C:PC_Top_A;
     assign ALUResult = (~rst_in)?32'b0:Voter_state[2]?ALUResult_A:Voter_state[1]?ALUResult_B:Voter_state[0]?ALUResult_C:ALUResult_A;
     assign MemWrite = (~rst_in)?32'b0:Voter_state[2]?MemWrite_A:Voter_state[1]?MemWrite_B:Voter_state[0]?MemWrite_C:MemWrite_A;

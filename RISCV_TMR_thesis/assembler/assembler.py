@@ -1,5 +1,8 @@
 # RISC-V assembler
 # Python code for converting RISC-V ASM into Machine code
+# Encodes parsed machine codes using SEC-DED algorithm for instruction memory
+
+# SEC-DED encoding
 def encode(hex_str):
     p = 6
     msg = format(int(hex_str, 16), '032b')
@@ -32,6 +35,7 @@ def encode(hex_str):
 
 from riscv_assembler.convert import *
 
+# File paths
 asm_file = 'memory/program.asm'
 hex_file = 'memory/instructions.hex'
 

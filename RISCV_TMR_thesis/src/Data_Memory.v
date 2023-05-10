@@ -1,4 +1,4 @@
-// 32 bit Data memory block
+// 32 bit Data memory block with SECDED encoding in RD and WD
 
 module Data_Memory(clk,rst_in,WE,WD,A,RD);
 

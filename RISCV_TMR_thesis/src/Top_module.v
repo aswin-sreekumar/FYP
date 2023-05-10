@@ -1,4 +1,5 @@
-// Top level module for RISC-V core
+// Top level module for FYP codebase
+// Includes RISCV+TMR+Lockstep+Rollback+SECDED+buffers 
 
 `include "src/Rst_Controller.v"
 `include "src/PC.v"
@@ -18,6 +19,8 @@
 `include "src/Error_injection.v"
 `include "SECDED/SECDED_Decoder.v"
 `include "SECDED/SECDED_Encoder.v"
+`include "SECDED/error_correction.v"
+`include "SECDED/error_injection.v"
 
 module Top_module(clk,main_rst);
 
@@ -61,9 +64,8 @@ module Top_module(clk,main_rst);
     wire [31:0] PC_Top_lockstep;
     wire [31:0] PC_changed;
 
-
+    // SECDED wires
     wire [38:0] Encoded_Instruction, Encoded_Write_Data, Encoded_Read_Data;
-
 
     // Error injection
     wire Core_A_inject_error,Core_B_inject_error,Core_C_inject_error;
@@ -73,6 +75,20 @@ module Top_module(clk,main_rst);
                             .core_hold(core_hold),
                             .rst_in(rst_in)
 
+    );
+
+    error_correction error_correction(
+                            .enc_data(RD_Instr_buffer), 
+                            .inject_1_error(Core_A_inject_error), 
+                            .inject_2_error(Core_B_inject_error), 
+                            .error_in_enc_data(RD_Instr)
+    );
+
+    error_correction error_correction(
+                            .enc_data(RD2_Top_buffer), 
+                            .inject_1_error(Core_A_inject_error), 
+                            .inject_2_error(Core_B_inject_error), 
+                            .error_in_enc_data(RD2_Top)
     );
 
     SECDED_Decoder Decoding_Instruction(
@@ -86,9 +102,10 @@ module Top_module(clk,main_rst);
                             .RD(Encoded_Instruction)
     );
 
-    assign Core_A_inject_error = 1'b0;
-    assign Core_B_inject_error = 1'b0;
-    assign Core_C_inject_error = 1'b0;
+    // Bypassing randomised error injection
+    // assign Core_A_inject_error = 1'b1;
+    // assign Core_B_inject_error = 1'b0;
+    // assign Core_C_inject_error = 1'b1;
 
     Main_core Main_core_A(
                         .clk(clk),

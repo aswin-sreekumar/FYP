@@ -1,3 +1,5 @@
+// Error correction module using SECDED algorithm
+
 module error_correction 
     (
         input [38:0] rcvd_error_data, 

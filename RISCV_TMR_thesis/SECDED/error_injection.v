@@ -1,3 +1,5 @@
+// Error injection module
+
 module error_injection (enc_data, inject_1_error, inject_2_error, error_in_enc_data);
     input [38:0] enc_data;
     input inject_1_error;

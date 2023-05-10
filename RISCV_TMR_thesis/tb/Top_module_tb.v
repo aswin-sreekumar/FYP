@@ -1,4 +1,6 @@
 // Testbench for RISC-V core top level
+// Uses only clk and main_rst as ports
+// All other internal ports and values are self-generating within the core
 
 `include "src/Parameters.v"
 

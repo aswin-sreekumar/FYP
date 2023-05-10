@@ -1,4 +1,4 @@
-# Makefile for RISCV processor
+# Makefile for final code base
 
 CC = iverilog
 SRC = src/Top_module.v
