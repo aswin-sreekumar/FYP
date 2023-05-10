@@ -1,0 +1,111 @@
+$date
+	Wed May 10 00:23:46 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module testbench $end
+$var wire 7 ! synd [6:0] $end
+$var wire 32 " dec_data [31:0] $end
+$var reg 32 # data [31:0] $end
+$var reg 1 $ inject_1_error $end
+$var reg 1 % inject_2_error $end
+$scope module UUT $end
+$var wire 32 & data [31:0] $end
+$var wire 1 $ inject_1_error $end
+$var wire 1 % inject_2_error $end
+$var wire 7 ' synd [6:0] $end
+$var wire 39 ( og_enc_data [38:0] $end
+$var wire 39 ) error_in_enc_data [38:0] $end
+$var wire 32 * dec_data [31:0] $end
+$var wire 39 + corrected_enc_data [38:0] $end
+$scope module decoder $end
+$var wire 39 , rcvd_data [38:0] $end
+$var reg 32 - dec_data [31:0] $end
+$var integer 32 . i [31:0] $end
+$var integer 32 / m [31:0] $end
+$var integer 32 0 mptr [31:0] $end
+$var integer 32 1 p [31:0] $end
+$var integer 32 2 pptr [31:0] $end
+$upscope $end
+$scope module encoder $end
+$var wire 32 3 data [31:0] $end
+$var reg 39 4 enc_data [38:0] $end
+$var integer 32 5 i [31:0] $end
+$var integer 32 6 j [31:0] $end
+$var integer 32 7 m [31:0] $end
+$var integer 32 8 mptr [31:0] $end
+$var integer 32 9 p [31:0] $end
+$var integer 32 : pptr [31:0] $end
+$upscope $end
+$scope module error_correction $end
+$var wire 39 ; rcvd_error_data [38:0] $end
+$var reg 39 < corrected_enc_data [38:0] $end
+$var reg 7 = synd [6:0] $end
+$var integer 32 > i [31:0] $end
+$var integer 32 ? j [31:0] $end
+$var integer 32 @ m [31:0] $end
+$var integer 32 A p [31:0] $end
+$upscope $end
+$scope module error_injection $end
+$var wire 39 B enc_data [38:0] $end
+$var wire 1 $ inject_1_error $end
+$var wire 1 % inject_2_error $end
+$var reg 39 C error_in_enc_data [38:0] $end
+$var reg 7 D rnum1 [6:0] $end
+$var reg 7 E rnum2 [6:0] $end
+$var integer 32 F m [31:0] $end
+$var integer 32 G p [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b111 G
+b100000 F
+b1 E
+b100100 D
+b101101 C
+b101101 B
+b111 A
+b100000 @
+b101000 ?
+b110 >
+b0 =
+b101101 <
+b101101 ;
+b111 :
+b111 9
+b100000 8
+b100000 7
+b101000 6
+b111 5
+b101101 4
+b101 3
+b111 2
+b111 1
+b100000 0
+b100000 /
+b100111 .
+b101 -
+b101101 ,
+b101101 +
+b101 *
+b101101 )
+b101101 (
+b0 '
+b101 &
+0%
+0$
+b101 #
+b101 "
+b0 !
+$end
+#60
