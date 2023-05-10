@@ -11,8 +11,8 @@
 `include "src/Mux.v"
 `include "src/Main_core.v"
 `include "src/Voter.v"
-`include "hamming/hamming_decoder.v"
-`include "hamming/hamming_encoder.v"
+`include "SECDED/SECDED_Decoder.v"
+`include "SECDED/SECDED_Encoder.v"
 
 module Top_module(clk,rst);
 
@@ -22,7 +22,6 @@ module Top_module(clk,rst);
     wire [31:0] PC_Top,RD_Instr;
     wire [31:0] ALUResult, ReadData, RD2_Top;
     wire MemWrite;
-    wire [37:0] enc_RD_Instr;
 
     // Core A wires
     wire [31:0] PC_Top_A;
@@ -41,15 +40,17 @@ module Top_module(clk,rst);
 
     // Voter output
     wire [2:0] Voter_state;
+    //additional wires
+    wire [38:0] Encoded_Instruction, Encoded_Write_Data, Encoded_Read_Data;
 
     Instruction_Memory Instruction_Memory(
                             .rst(rst),
                             .A(PC_Top),
-                            .RD(enc_RD_Instr)
+                            .RD(Encoded_Instruction)
     );
 
-    hamming_decoder decode_instr(
-        .rcvd_data(enc_RD_Instr),
+    SECDED_Decoder Decoding_Instruction(
+        .rcvd_data(Encoded_Instruction[38:0]),
         .dec_data(RD_Instr)
     );
 
@@ -107,23 +108,23 @@ module Top_module(clk,rst);
                 .Voter_state(Voter_state)
     );
 
+    SECDED_Encoder Encoding_Write_Data(
+        .data(RD2_Top),
+        .enc_data(Encoded_Write_Data)
+    );
+
     Data_Memory Data_Memory(
                         .clk(clk),
                         .rst(rst),
                         .WE(MemWrite),
-                        .WD(RD2_Top),
+                        .WD(Encoded_Write_Data),
                         .A(ALUResult),
-                        .RD(ReadData)
+                        .RD(Encoded_Read_Data)
     );
 
-    // hamming_encoder enc_WD(
-    //     .data(og_wd),
-    //     .enc_data(RD2_Top)
-    // );
-
-    // hamming_decoder dec_data(
-    //     .rcvd_data(ENC_Data),
-    //     .dec_data(ReadData)
-    // );
+    SECDED_Decoder Decoding_Read_Data(
+        .rcvd_data(Encoded_Read_Data),
+        .dec_data(ReadData)
+    );
     
 endmodule

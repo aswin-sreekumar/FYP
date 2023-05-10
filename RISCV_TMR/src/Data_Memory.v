@@ -4,10 +4,10 @@ module Data_Memory(clk,rst,WE,WD,A,RD);
 
     input clk,rst,WE;
     input [31:0] A;
-    input [31:0] WD; 
-    output [31:0] RD;
+    input [38:0] WD; 
+    output [38:0] RD;
 
-    reg [31:0] mem [0:31];
+    reg [38:0] mem [0:31];
 
     always @ (posedge clk)
     begin
@@ -15,7 +15,7 @@ module Data_Memory(clk,rst,WE,WD,A,RD);
             mem[A] <= WD;
     end
 
-    assign RD = (~rst) ? 32'd0 : mem[A];
+    assign RD = (~rst) ? 39'd0 : mem[A];
 
     initial begin
         // mem[0] = 32'b10101010101010101010101010101010;

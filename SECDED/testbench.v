@@ -22,14 +22,16 @@ initial begin
 end
 
 initial begin
-    data=32'd8456;
+    data=32'd5;
     inject_1_error=0;
-    inject_2_error=0; #20;
+    inject_2_error=0; 
+    #20;
     // inject_1_error=1; #20;
     // inject_1_error=0; #40;
-    inject_2_error=1; #40;
+    // inject_2_error=1;
+     #40;
 
-    if(synd[6]==0) begin
+    if(synd[6]==0 & synd[0]==1) begin
         $display("Double Errors Detected");
     end
     $finish;

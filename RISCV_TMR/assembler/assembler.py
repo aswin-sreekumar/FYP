@@ -7,24 +7,27 @@ def encode(hex_str):
     mptr = 0
     pptr = 1
     a = []
-    for i in range(1, len(m) + p + 1):
+    extra_parity=0
+    for i in range(1, len(m) + p+1):
         if i == pow(2, pptr - 1):
             a.append(str(0))
             pptr += 1
         else:
-            a.append(str(m[mptr]))
+            extra_parity=extra_parity^int(m[mptr])
+            a.append(m[mptr])
             mptr += 1
-
     for i in range(1, p + 1):
         b = 0
-        for j in range(1, len(m) + p + 1):
+        for j in range(1, len(m) + p+1):
             if pow(2, i - 1) & j:
                 b = b ^ int(a[j - 1])
+        extra_parity=extra_parity^b
         a[pow(2, i - 1) - 1] = str(b)
+    a.append(str(extra_parity))
     res = ""
     for i in reversed(a):
         res = res + i
-    h = hex(int(res, 2))[2:].zfill(len(res) // 4).upper()
+    h = hex(int(res, 2))[2:].zfill((len(res)+1) // 4).upper()
     return h
 
 from riscv_assembler.convert import *

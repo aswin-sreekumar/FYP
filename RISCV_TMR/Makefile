@@ -12,7 +12,7 @@ DATA_ENC_PATH = memory/enc_data.py
 $(info Starting simulation . . . )
 library_input: $(SRC) $(TB) $(ASM_FILE)
 	$(PYTHON_PATH) $(ASSEMBLER)
-# $(PYTHON_PATH) $(DATA_ENC_PATH)
+	$(PYTHON_PATH) $(DATA_ENC_PATH)
 	$(CC) -o $(VVP) $(SRC) $(TB)
 	vvp $(VVP)
 # gtkwave output/dumpfile.vcd output/config.gtkw
