@@ -1,0 +1,206 @@
+$date
+	Thu Mar 16 21:02:23 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module alu_tb $end
+$var wire 1 ! CarryOut $end
+$var wire 8 " ALU_Out [7:0] $end
+$var reg 4 # A [3:0] $end
+$var reg 4 $ ALU_Sel [3:0] $end
+$var reg 4 % B [3:0] $end
+$var reg 1 & clk $end
+$var integer 32 ' i [31:0] $end
+$scope module test_unit $end
+$var wire 4 ( A [3:0] $end
+$var wire 8 ) ALU_Out [7:0] $end
+$var wire 4 * ALU_Sel [3:0] $end
+$var wire 4 + B [3:0] $end
+$var wire 1 & clk $end
+$var wire 9 , tmp [8:0] $end
+$var wire 1 ! CarryOut $end
+$var reg 8 - ALU_Result [7:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+bx -
+b1100 ,
+b10 +
+b1 *
+bx )
+b1010 (
+b0 '
+0&
+b10 %
+b1 $
+b1010 #
+bx "
+0!
+$end
+#10000
+b1000 "
+b1000 )
+b1000 -
+1&
+#20000
+0&
+b10 $
+b10 *
+b1 '
+#30000
+b10100 "
+b10100 )
+b10100 -
+1&
+#40000
+0&
+b11 $
+b11 *
+b10 '
+#50000
+b101 "
+b101 )
+b101 -
+1&
+#60000
+0&
+b100 $
+b100 *
+b11 '
+#70000
+b10100 "
+b10100 )
+b10100 -
+1&
+#80000
+0&
+b101 $
+b101 *
+b100 '
+#90000
+b101 "
+b101 )
+b101 -
+1&
+#100000
+0&
+b110 $
+b110 *
+b101 '
+#110000
+bx1010x "
+bx1010x )
+bx1010x -
+1&
+#120000
+0&
+b111 $
+b111 *
+b110 '
+#130000
+b0xxxx101 "
+b0xxxx101 )
+b0xxxx101 -
+1&
+#140000
+0&
+b1000 $
+b1000 *
+b111 '
+#150000
+b10 "
+b10 )
+b10 -
+1&
+#160000
+0&
+b1001 $
+b1001 *
+b1000 '
+#170000
+b1010 "
+b1010 )
+b1010 -
+1&
+#180000
+0&
+b1010 $
+b1010 *
+b1001 '
+#190000
+b1000 "
+b1000 )
+b1000 -
+1&
+#200000
+0&
+b1011 $
+b1011 *
+b1010 '
+#210000
+b11110101 "
+b11110101 )
+b11110101 -
+1&
+#220000
+0&
+b1100 $
+b1100 *
+b1011 '
+#230000
+b11111101 "
+b11111101 )
+b11111101 -
+1&
+#240000
+0&
+b1101 $
+b1101 *
+b1100 '
+#250000
+b11110111 "
+b11110111 )
+b11110111 -
+1&
+#260000
+0&
+b1110 $
+b1110 *
+b1101 '
+#270000
+b1 "
+b1 )
+b1 -
+1&
+#280000
+0&
+b1111 $
+b1111 *
+b1110 '
+#290000
+b0 "
+b0 )
+b0 -
+1&
+#300000
+0&
+b0 $
+b0 *
+b1111 '
+#310000
+b1100 "
+b1100 )
+b1100 -
+1&
+#320000
+0&
+b10000 '

@@ -1,0 +1,85 @@
+$date
+	Tue May 09 15:08:12 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module testbench $end
+$var wire 32 ! dec_data [31:0] $end
+$var reg 32 " data [31:0] $end
+$var reg 1 # inject_error $end
+$scope module UUT $end
+$var wire 32 $ data [31:0] $end
+$var wire 1 # inject_error $end
+$var wire 38 % og_enc_data [37:0] $end
+$var wire 38 & error_in_enc_data [37:0] $end
+$var wire 32 ' dec_data [31:0] $end
+$var wire 38 ( corrected_enc_data [37:0] $end
+$scope module decoder $end
+$var wire 38 ) rcvd_data [37:0] $end
+$var reg 32 * dec_data [31:0] $end
+$var integer 32 + i [31:0] $end
+$var integer 32 , mptr [31:0] $end
+$var integer 32 - pptr [31:0] $end
+$upscope $end
+$scope module encoder $end
+$var wire 32 . data [31:0] $end
+$var reg 38 / enc_data [37:0] $end
+$var integer 32 0 i [31:0] $end
+$var integer 32 1 j [31:0] $end
+$var integer 32 2 mptr [31:0] $end
+$var integer 32 3 pptr [31:0] $end
+$upscope $end
+$scope module error_correction $end
+$var wire 38 4 rcvd_error_data [37:0] $end
+$var reg 38 5 corrected_enc_data [37:0] $end
+$var reg 6 6 synd [5:0] $end
+$var integer 32 7 i [31:0] $end
+$var integer 32 8 j [31:0] $end
+$upscope $end
+$scope module error_injection $end
+$var wire 38 9 enc_data [37:0] $end
+$var wire 1 # inject_error $end
+$var reg 38 : error_in_enc_data [37:0] $end
+$var reg 7 ; rnum [6:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b100100 ;
+b101010 :
+b101010 9
+b100111 8
+b110 7
+b0 6
+b101010 5
+b101010 4
+b110 3
+b100000 2
+b100111 1
+b110 0
+b101010 /
+b100 .
+b110 -
+b100000 ,
+b100110 +
+b100 *
+b101010 )
+b101010 (
+b100 '
+b101010 &
+b101010 %
+b100 $
+x#
+b100 "
+b100 !
+$end
+#20

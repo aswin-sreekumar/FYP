@@ -1,0 +1,26 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sun Apr 09 06:37:35 2023
+[*]
+[dumpfile] "C:\Users\aswin\Desktop\C files\FYP - SEM 8\FYP\ALU\alu_tb.vcd"
+[dumpfile_mtime] "Sun Apr 09 06:37:06 2023"
+[dumpfile_size] 2070
+[savefile] "C:\Users\aswin\Desktop\C files\FYP - SEM 8\FYP\ALU\config.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-17.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] alu_tb.
+[sst_width] 197
+[signals_width] 150
+[sst_expanded] 1
+[sst_vpaned_height] 153
+@22
+alu_tb.test_unit.ALU_Out[7:0]
+alu_tb.test_unit.ALU_Result[7:0]
+alu_tb.test_unit.A[3:0]
+alu_tb.test_unit.ALU_Sel[3:0]
+@29
+alu_tb.test_unit.clk
+[pattern_trace] 1
+[pattern_trace] 0
